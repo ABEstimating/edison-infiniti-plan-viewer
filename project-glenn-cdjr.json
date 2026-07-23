@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "packageType": "abplans",
+  "packageVersion": "1.0.0",
+  "projectId": "glenn-cdjr",
+  "projectName": "Glenn CDJR",
+  "address": "6424 KY-146, Crestwood, KY 40014",
+  "setName": "Addendum No. 1 + E1.01 Rev. 0",
+  "setDate": "2026-07-10",
+  "defaultRotation": 0,
+  "mobileDefaultRotation": 0,
+  "allowBrowserOcr": true,
+  "extensionData": {
+    "projectKeywords": ["Glenn CDJR", "Glenn CDRJ", "Crestwood", "6424 KY-146"],
+    "projectAliases": ["Glenn Chrysler Dodge Jeep Ram", "Glenn Dealership"],
+    "city": "Crestwood",
+    "state": "KY",
+    "drawingSetDate": "2026-07-10",
+    "sheetCount": 3
+  },
+  "sheets": [
+    {
+      "number": "ADD-1",
+      "title": "Addendum No. 1",
+      "discipline": "Addenda",
+      "mime": "image/png",
+      "chunks": ["01-addendum-no-1.part01.b64"],
+      "page": 1
+    },
+    {
+      "number": "1",
+      "title": "Landscape Plan",
+      "discipline": "Landscape",
+      "mime": "image/png",
+      "chunks": [
+        "02-landscape-plan.part01.b64",
+        "02-landscape-plan.part02.b64",
+        "02-landscape-plan.part03.b64",
+        "02-landscape-plan.part04.b64"
+      ],
+      "page": 2
+    },
+    {
+      "number": "E1.01",
+      "title": "Showroom Area Power Plan",
+      "discipline": "Electrical",
+      "mime": "image/png",
+      "chunks": [
+        "03-e1-01-showroom-area-power-plan.part01.b64",
+        "03-e1-01-showroom-area-power-plan.part02.b64",
+        "03-e1-01-showroom-area-power-plan.part03.b64"
+      ],
+      "page": 3
+    }
+  ]
+}
