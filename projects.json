@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "brand": "AB Plan Viewer",
+  "projects": [
+    {
+      "id": "edison-infiniti",
+      "name": "Edison Infiniti",
+      "address": "842 U.S. Route 1, Edison, NJ 08817",
+      "setName": "100% Set",
+      "setDate": "2023-05-12",
+      "sheetCount": 14,
+      "manifest": "project-edison-infiniti.json",
+      "mobileViewer": "mobile.html"
+    }
+  ]
+}
