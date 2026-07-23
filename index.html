@@ -8,7 +8,7 @@
 :root{--bg:#0b1020;--panel:#11182b;--panel2:#182238;--line:#283652;--text:#eef3fb;--muted:#96a4bb;--accent:#5ea7ff;--accent2:#276ec8;--shadow:0 12px 32px rgba(0,0,0,.28)}
 *{box-sizing:border-box} html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text);overflow:hidden}
 button,input,select{font:inherit}.app{height:100%;display:grid;grid-template-rows:58px 1fr}.topbar{display:flex;align-items:center;gap:12px;padding:0 16px;border-bottom:1px solid var(--line);background:rgba(15,22,39,.96);box-shadow:var(--shadow);z-index:3}.brand{font-weight:750;letter-spacing:.2px;white-space:nowrap}.project{font-size:12px;color:var(--muted);white-space:nowrap}.spacer{flex:1}.set-switch{display:flex;background:#0b1221;border:1px solid var(--line);border-radius:10px;padding:3px;gap:3px}.set-btn{border:0;background:transparent;color:var(--muted);padding:7px 12px;border-radius:7px;cursor:pointer}.set-btn.active{background:var(--accent2);color:white}.set-btn:disabled{opacity:.45;cursor:not-allowed}.upload-btn,.icon-btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:9px;padding:8px 11px;cursor:pointer}.upload-btn:hover,.icon-btn:hover{border-color:#46618b}.main{min-height:0;display:grid;grid-template-columns:330px 1fr}.sidebar{min-height:0;background:var(--panel);border-right:1px solid var(--line);display:grid;grid-template-rows:auto auto 1fr auto}.side-head{padding:16px 16px 10px}.side-title{font-size:13px;font-weight:700}.side-sub{font-size:12px;color:var(--muted);margin-top:4px}.search-wrap{padding:0 14px 10px}.search{width:100%;border:1px solid var(--line);background:#0b1221;color:var(--text);padding:10px 11px;border-radius:9px;outline:none}.search:focus{border-color:var(--accent)}.sheet-list{overflow:auto;padding:0 8px 12px}.sheet{width:100%;display:grid;grid-template-columns:38px 1fr;gap:8px;align-items:center;text-align:left;border:0;background:transparent;color:var(--text);padding:9px 10px;border-radius:9px;cursor:pointer;margin:2px 0}.sheet:hover{background:#172238}.sheet.active{background:#203a61;box-shadow:inset 3px 0 0 var(--accent)}.num{font-size:11px;color:#9fb5d4;text-align:center;background:#0d1728;border:1px solid #2a3b58;border-radius:6px;padding:5px 2px}.sheet-name{font-size:13px;line-height:1.25}.side-foot{padding:10px 14px;border-top:1px solid var(--line);font-size:11px;color:var(--muted)}
-.viewer{min-width:0;min-height:0;display:grid;grid-template-rows:52px 1fr 30px;background:#202735}.toolbar{display:flex;align-items:center;gap:7px;padding:8px 12px;background:#131c2d;border-bottom:1px solid var(--line);overflow-x:auto}.toolbar .icon-btn{padding:6px 9px;min-width:36px}.page-box{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:12px}.page-input{width:48px;border:1px solid var(--line);border-radius:7px;background:#0b1221;color:white;padding:6px;text-align:center}.zoom-label{min-width:56px;text-align:center;font-size:12px;color:var(--muted)}.divider{width:1px;height:26px;background:var(--line);margin:0 3px}.canvas-wrap{position:relative;overflow:auto;background:radial-gradient(circle at 50% 10%,#344057 0,#252d3c 45%,#1d2431 100%);display:flex;align-items:flex-start;justify-content:center;padding:28px}.canvas-stage{position:relative;background:white;box-shadow:0 18px 48px rgba(0,0,0,.5);line-height:0}.canvas-stage canvas{display:block}.loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#d8e5f8;background:rgba(14,20,32,.72);z-index:2;font-size:14px}.statusbar{display:flex;align-items:center;justify-content:space-between;padding:0 12px;background:#111827;border-top:1px solid var(--line);font-size:11px;color:var(--muted)}.notice{position:fixed;right:18px;top:72px;background:#16243a;border:1px solid #355078;border-radius:10px;padding:12px 14px;box-shadow:var(--shadow);font-size:12px;max-width:330px;display:none;z-index:10}.mobile-toggle{display:none}
+.viewer{min-width:0;min-height:0;display:grid;grid-template-rows:52px 1fr 30px;background:#202735}.toolbar{display:flex;align-items:center;gap:7px;padding:8px 12px;background:#131c2d;border-bottom:1px solid var(--line);overflow-x:auto}.toolbar .icon-btn{padding:6px 9px;min-width:36px}.page-box{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:12px}.page-input{width:48px;border:1px solid var(--line);border-radius:7px;background:#0b1221;color:white;padding:6px;text-align:center}.zoom-label{min-width:56px;text-align:center;font-size:12px;color:var(--muted)}.divider{width:1px;height:26px;background:var(--line);margin:0 3px}.canvas-wrap{position:relative;overflow:auto;background:radial-gradient(circle at 50% 10%,#344057 0,#252d3c 45%,#1d2431 100%);cursor:grab;user-select:none;touch-action:none}.canvas-wrap.is-dragging{cursor:grabbing}.canvas-stage{position:relative;background:white;box-shadow:0 18px 48px rgba(0,0,0,.5);line-height:0;margin:28px auto}.canvas-stage canvas{display:block;pointer-events:none}.loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#d8e5f8;background:rgba(14,20,32,.72);z-index:2;font-size:14px}.statusbar{display:flex;align-items:center;justify-content:space-between;padding:0 12px;background:#111827;border-top:1px solid var(--line);font-size:11px;color:var(--muted)}.notice{position:fixed;right:18px;top:72px;background:#16243a;border:1px solid #355078;border-radius:10px;padding:12px 14px;box-shadow:var(--shadow);font-size:12px;max-width:330px;display:none;z-index:10}.mobile-toggle{display:none}
 @media(max-width:850px){.main{grid-template-columns:1fr}.sidebar{position:fixed;left:0;top:58px;bottom:0;width:min(88vw,340px);z-index:6;transform:translateX(-102%);transition:.2s;box-shadow:var(--shadow)}.sidebar.open{transform:translateX(0)}.mobile-toggle{display:inline-flex}.project{display:none}.topbar{gap:7px}.upload-btn{display:none}}
 </style>
 </head>
@@ -46,7 +46,7 @@ button,input,select{font:inherit}.app{height:100%;display:grid;grid-template-row
         <button class="icon-btn" id="download" title="Download current PDF">⇩</button>
       </div>
       <div class="canvas-wrap" id="canvasWrap"><div class="canvas-stage" id="canvasStage"><canvas id="pdfCanvas"></canvas><div class="loading" id="loading">Loading plans…</div></div></div>
-      <div class="statusbar"><span id="currentTitle">01 - Cover Sheet</span><span>Mouse wheel/trackpad to scroll · Ctrl + wheel to zoom</span></div>
+      <div class="statusbar"><span id="currentTitle">01 - Cover Sheet</span><span>Drag to pan · Ctrl + wheel to zoom · Double-click to fit</span></div>
     </section>
   </main>
 </div>
@@ -58,20 +58,92 @@ pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/p
 const sheets100=[
 ['01','Cover Sheet'],['02','Existing Conditions and Removals Plan'],['03','Site Plan'],['04','Grading & Drainage Plan'],['05','Utility Plan'],['06','Signage & Landscaping Plan'],['07','Lighting Plan'],['08','Soil Erosion & Sediment Control Plan'],['09','Soil Erosion & Sediment Control Notes'],['10','Construction Details-1'],['11','Construction Details-2'],['S-1','Tree Management Plan'],['S-2','Car Carrier Circulation Plan'],['S-3','Fire Truck Circulation Plan']
 ];
-const state={pdf:null,page:1,scale:1,rotation:0,set:'100',url:'edison-infiniti-100-percent.pdf',objectUrl:null,sheets:sheets100};
+const state={pdf:null,page:1,scale:1,rotation:0,set:'100',url:'edison-infiniti-100-percent.pdf',objectUrl:null,sheets:sheets100,cache:new Map(),preloadToken:0,renderToken:0};
 const $=id=>document.getElementById(id), canvas=$('pdfCanvas'),ctx=canvas.getContext('2d'),wrap=$('canvasWrap'),stage=$('canvasStage');
 function notice(msg){const n=$('notice');n.textContent=msg;n.style.display='block';clearTimeout(notice.t);notice.t=setTimeout(()=>n.style.display='none',3600)}
 function renderList(filter=''){const q=filter.trim().toLowerCase();$('sheetList').innerHTML='';state.sheets.forEach((s,i)=>{const label=`${s[0]} - ${s[1]}`;if(q&&!label.toLowerCase().includes(q))return;const b=document.createElement('button');b.className='sheet'+(state.page===i+1?' active':'');b.innerHTML=`<span class="num">${s[0]}</span><span class="sheet-name">${s[1]}</span>`;b.onclick=()=>{go(i+1);$('sidebar').classList.remove('open')};$('sheetList').appendChild(b)})}
-async function loadPdf(url){$('loading').style.display='flex';try{state.pdf=await pdfjsLib.getDocument(url).promise;state.page=Math.min(state.page,state.pdf.numPages);$('pageCount').textContent=`/ ${state.pdf.numPages}`;$('setLabel').textContent=`${state.set}% set · ${state.pdf.numPages} sheets`;await fit('page')}catch(e){console.error(e);$('loading').textContent='Unable to load PDF. Open this site through the provided link or upload a local set.';notice('The PDF could not be loaded.')}renderList($('sheetSearch').value)}
-async function render(){if(!state.pdf)return;$('loading').style.display='flex';const page=await state.pdf.getPage(state.page);const viewport=page.getViewport({scale:state.scale,rotation:state.rotation});const dpr=Math.min(window.devicePixelRatio||1,2);canvas.width=Math.floor(viewport.width*dpr);canvas.height=Math.floor(viewport.height*dpr);canvas.style.width=`${viewport.width}px`;canvas.style.height=`${viewport.height}px`;stage.style.width=`${viewport.width}px`;stage.style.height=`${viewport.height}px`;ctx.setTransform(dpr,0,0,dpr,0,0);await page.render({canvasContext:ctx,viewport}).promise;$('loading').style.display='none';$('pageInput').value=state.page;$('zoomLabel').textContent=`${Math.round(state.scale*100)}%`;const s=state.sheets[state.page-1]||[`Page ${state.page}`,''];$('currentTitle').textContent=`${s[0]} - ${s[1]}`;renderList($('sheetSearch').value);history.replaceState(null,'',`#page=${state.page}`)}
-async function fit(mode){if(!state.pdf)return;const page=await state.pdf.getPage(state.page);const base=page.getViewport({scale:1,rotation:state.rotation});const pad=56;const availW=Math.max(200,wrap.clientWidth-pad),availH=Math.max(200,wrap.clientHeight-pad);state.scale=mode==='width'?availW/base.width:Math.min(availW/base.width,availH/base.height);state.scale=Math.max(.15,Math.min(state.scale,4));render()}
+function cacheKey(page,scale=state.scale,rotation=state.rotation){return `${state.set}|${page}|${rotation}|${scale.toFixed(4)}`}
+function clearCache(){state.cache.clear();state.preloadToken++;}
+async function buildPageCanvas(pageNumber,scale=state.scale,rotation=state.rotation,token=state.renderToken){
+  const key=cacheKey(pageNumber,scale,rotation);
+  if(state.cache.has(key))return state.cache.get(key);
+  const page=await state.pdf.getPage(pageNumber);
+  if(token!==state.renderToken && pageNumber===state.page)return null;
+  const viewport=page.getViewport({scale,rotation});
+  const dpr=Math.min(window.devicePixelRatio||1,2);
+  const off=document.createElement('canvas');
+  off.width=Math.floor(viewport.width*dpr);off.height=Math.floor(viewport.height*dpr);
+  const offCtx=off.getContext('2d',{alpha:false});
+  offCtx.setTransform(dpr,0,0,dpr,0,0);
+  await page.render({canvasContext:offCtx,viewport}).promise;
+  const item={canvas:off,width:viewport.width,height:viewport.height,dpr};
+  state.cache.set(key,item);
+  return item;
+}
+function drawCached(item){
+  if(!item)return;
+  canvas.width=item.canvas.width;canvas.height=item.canvas.height;
+  canvas.style.width=`${item.width}px`;canvas.style.height=`${item.height}px`;
+  stage.style.width=`${item.width}px`;stage.style.height=`${item.height}px`;
+  ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,canvas.width,canvas.height);ctx.drawImage(item.canvas,0,0);
+}
+async function loadPdf(url){
+  $('loading').style.display='flex';$('loading').textContent='Loading plans…';clearCache();
+  try{
+    state.pdf=await pdfjsLib.getDocument(url).promise;state.page=Math.min(state.page,state.pdf.numPages);
+    $('pageCount').textContent=`/ ${state.pdf.numPages}`;$('setLabel').textContent=`${state.set}% set · ${state.pdf.numPages} sheets`;
+    await fit('page');
+  }catch(e){console.error(e);$('loading').textContent='Unable to load PDF. Confirm the PDF is in the same GitHub folder as index.html.';notice('The PDF could not be loaded.')}
+  renderList($('sheetSearch').value)
+}
+async function render(){
+  if(!state.pdf)return;
+  const token=++state.renderToken;
+  const key=cacheKey(state.page);
+  const existing=state.cache.get(key);
+  if(existing){drawCached(existing);$('loading').style.display='none';updateUi();queuePreload();return;}
+  $('loading').style.display='flex';$('loading').textContent='Rendering sheet…';
+  try{const item=await buildPageCanvas(state.page,state.scale,state.rotation,token);if(token!==state.renderToken)return;drawCached(item);$('loading').style.display='none';updateUi();queuePreload()}catch(e){console.error(e);if(token===state.renderToken){$('loading').textContent='Unable to render this sheet.'}}
+}
+function updateUi(){
+  $('pageInput').value=state.page;$('zoomLabel').textContent=`${Math.round(state.scale*100)}%`;
+  const s=state.sheets[state.page-1]||[`Page ${state.page}`,''];$('currentTitle').textContent=`${s[0]} - ${s[1]}`;
+  renderList($('sheetSearch').value);history.replaceState(null,'',`#page=${state.page}`)
+}
+function preloadOrder(){
+  const pages=[];for(let d=1;d<state.pdf.numPages;d++){const a=state.page+d,b=state.page-d;if(a<=state.pdf.numPages)pages.push(a);if(b>=1)pages.push(b)}return pages
+}
+function queuePreload(){
+  if(!state.pdf)return;
+  const preloadToken=++state.preloadToken, scale=state.scale, rotation=state.rotation, pages=preloadOrder();
+  const run=async()=>{
+    for(const p of pages){
+      if(preloadToken!==state.preloadToken||scale!==state.scale||rotation!==state.rotation)return;
+      const key=cacheKey(p,scale,rotation);if(state.cache.has(key))continue;
+      try{await buildPageCanvas(p,scale,rotation,state.renderToken)}catch(e){console.warn('Background preload failed for page',p,e)}
+      await new Promise(resolve=>setTimeout(resolve,0));
+    }
+  };
+  if('requestIdleCallback'in window)requestIdleCallback(()=>run(),{timeout:800});else setTimeout(run,50)
+}
+async function fit(mode){if(!state.pdf)return;const page=await state.pdf.getPage(state.page);const base=page.getViewport({scale:1,rotation:state.rotation});const pad=56;const availW=Math.max(200,wrap.clientWidth-pad),availH=Math.max(200,wrap.clientHeight-pad);state.scale=mode==='width'?availW/base.width:Math.min(availW/base.width,availH/base.height);state.scale=Math.max(.15,Math.min(state.scale,4));state.preloadToken++;render()}
 function go(p){if(!state.pdf)return;state.page=Math.max(1,Math.min(Number(p)||1,state.pdf.numPages));render()}
-$('prevBtn').onclick=()=>go(state.page-1);$('nextBtn').onclick=()=>go(state.page+1);$('pageInput').onchange=e=>go(e.target.value);$('zoomIn').onclick=()=>{state.scale=Math.min(4,state.scale*1.2);render()};$('zoomOut').onclick=()=>{state.scale=Math.max(.15,state.scale/1.2);render()};$('fitWidth').onclick=()=>fit('width');$('fitPage').onclick=()=>fit('page');$('rotate').onclick=()=>{state.rotation=(state.rotation+90)%360;fit('page')};$('sheetSearch').oninput=e=>renderList(e.target.value);$('fullscreen').onclick=()=>document.fullscreenElement?document.exitFullscreen():$('viewer').requestFullscreen();$('menuBtn').onclick=()=>$('sidebar').classList.toggle('open');
+$('prevBtn').onclick=()=>go(state.page-1);$('nextBtn').onclick=()=>go(state.page+1);$('pageInput').onchange=e=>go(e.target.value);
+$('zoomIn').onclick=()=>{state.scale=Math.min(4,state.scale*1.2);state.preloadToken++;render()};
+$('zoomOut').onclick=()=>{state.scale=Math.max(.15,state.scale/1.2);state.preloadToken++;render()};
+$('fitWidth').onclick=()=>fit('width');$('fitPage').onclick=()=>fit('page');
+$('rotate').onclick=()=>{state.rotation=(state.rotation+90)%360;state.preloadToken++;fit('page')};
+$('sheetSearch').oninput=e=>renderList(e.target.value);$('fullscreen').onclick=()=>document.fullscreenElement?document.exitFullscreen():$('viewer').requestFullscreen();$('menuBtn').onclick=()=>$('sidebar').classList.toggle('open');
 $('download').onclick=()=>{const a=document.createElement('a');a.href=state.url;a.download=state.set==='100'?'Edison Infiniti 100 Percent Plans.pdf':'Edison Infiniti 60 Percent Plans.pdf';a.click()};
 $('upload60').onchange=e=>{const f=e.target.files[0];if(!f)return;if(state.objectUrl)URL.revokeObjectURL(state.objectUrl);state.objectUrl=URL.createObjectURL(f);state.url=state.objectUrl;state.set='60';state.page=1;state.sheets=sheets100;$('set60').disabled=false;$('set60').classList.add('active');$('set100').classList.remove('active');loadPdf(state.url);notice('60% set loaded for this browser session.')};
 $('set100').onclick=()=>{state.set='100';state.url='edison-infiniti-100-percent.pdf';state.page=1;state.sheets=sheets100;$('set100').classList.add('active');$('set60').classList.remove('active');loadPdf(state.url)};
 $('set60').onclick=()=>{if(!state.objectUrl)return;state.set='60';state.url=state.objectUrl;state.page=1;$('set60').classList.add('active');$('set100').classList.remove('active');loadPdf(state.url)};
-wrap.addEventListener('wheel',e=>{if(e.ctrlKey){e.preventDefault();state.scale=Math.max(.15,Math.min(4,state.scale*(e.deltaY<0?1.1:.9)));render()}},{passive:false});
+wrap.addEventListener('wheel',e=>{if(e.ctrlKey){e.preventDefault();state.scale=Math.max(.15,Math.min(4,state.scale*(e.deltaY<0?1.1:.9)));state.preloadToken++;render()}},{passive:false});
+let isDragging=false,dragStartX=0,dragStartY=0,scrollStartLeft=0,scrollStartTop=0;
+wrap.addEventListener('mousedown',e=>{if(e.button!==0)return;isDragging=true;wrap.classList.add('is-dragging');dragStartX=e.clientX;dragStartY=e.clientY;scrollStartLeft=wrap.scrollLeft;scrollStartTop=wrap.scrollTop;e.preventDefault()});
+window.addEventListener('mousemove',e=>{if(!isDragging)return;wrap.scrollLeft=scrollStartLeft-(e.clientX-dragStartX);wrap.scrollTop=scrollStartTop-(e.clientY-dragStartY)});
+window.addEventListener('mouseup',()=>{isDragging=false;wrap.classList.remove('is-dragging')});
+wrap.addEventListener('dblclick',()=>fit('page'));
 document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key==='PageUp')go(state.page-1);if(e.key==='ArrowRight'||e.key==='PageDown')go(state.page+1);if(e.key==='Home')go(1);if(e.key==='End'&&state.pdf)go(state.pdf.numPages)});
 window.addEventListener('resize',()=>{clearTimeout(window._rz);window._rz=setTimeout(()=>fit('page'),180)});
 const hash=Number(location.hash.match(/page=(\d+)/)?.[1]||1);state.page=hash;renderList();loadPdf(state.url);
