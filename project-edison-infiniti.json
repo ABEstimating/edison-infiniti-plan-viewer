@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "packageType": "abplans",
+  "projectId": "edison-infiniti",
+  "projectName": "Edison Infiniti",
+  "address": "842 U.S. Route 1, Edison, NJ 08817",
+  "setName": "100% Set",
+  "setDate": "2023-05-12",
+  "defaultRotation": 90,
+  "sourcePdf": "edison-infiniti-100-percent.pdf",
+  "extensionData": {
+    "projectKeywords": ["Edison Infiniti", "Infiniti of Edison", "Edison", "842 Route 1"],
+    "projectAliases": ["Edison Infinity", "Infiniti Edison"],
+    "city": "Edison",
+    "state": "NJ",
+    "drawingSetDate": "2023-05-12",
+    "sheetCount": 14
+  },
+  "sheets": [
+    {"number":"01","title":"Cover Sheet","discipline":"General / Civil","image":"01-cover-sheet.webp","page":1},
+    {"number":"02","title":"Existing Conditions and Removals Plan","discipline":"General / Civil","image":"02-existing-conditions-and-removals-plan.webp","page":2},
+    {"number":"03","title":"Site Plan","discipline":"General / Civil","image":"03-site-plan.webp","page":3},
+    {"number":"04","title":"Grading & Drainage Plan","discipline":"General / Civil","image":"04-grading-and-drainage-plan.webp","page":4},
+    {"number":"05","title":"Utility Plan","discipline":"General / Civil","image":"05-utility-plan.webp","page":5},
+    {"number":"06","title":"Signage & Landscaping Plan","discipline":"General / Civil","image":"06-signage-and-landscaping-plan.webp","page":6},
+    {"number":"07","title":"Lighting Plan","discipline":"General / Civil","image":"07-lighting-plan.webp","page":7},
+    {"number":"08","title":"Soil Erosion & Sediment Control Plan","discipline":"General / Civil","image":"08-soil-erosion-and-sediment-control-plan.webp","page":8},
+    {"number":"09","title":"Soil Erosion & Sediment Control Notes","discipline":"General / Civil","image":"09-soil-erosion-and-sediment-control-notes.webp","page":9},
+    {"number":"10","title":"Construction Details-1","discipline":"Details","image":"10-construction-details-1.webp","page":10},
+    {"number":"11","title":"Construction Details-2","discipline":"Details","image":"11-construction-details-2.webp","page":11},
+    {"number":"S-1","title":"Tree Management Plan","discipline":"Supplemental Drawings","image":"s-1-tree-management-plan.webp","page":12},
+    {"number":"S-2","title":"Car Carrier Circulation Plan","discipline":"Supplemental Drawings","image":"s-2-car-carrier-circulation-plan.webp","page":13},
+    {"number":"S-3","title":"Fire Truck Circulation Plan","discipline":"Supplemental Drawings","image":"s-3-fire-truck-circulation-plan.webp","page":14}
+  ]
+}
