@@ -1,12 +1,15 @@
 {
   "schemaVersion": 1,
   "packageType": "abplans",
+  "packageVersion": "1.0.0",
   "projectId": "edison-infiniti",
   "projectName": "Edison Infiniti",
   "address": "842 U.S. Route 1, Edison, NJ 08817",
   "setName": "100% Set",
   "setDate": "2023-05-12",
   "defaultRotation": 90,
+  "mobileDefaultRotation": 0,
+  "allowBrowserOcr": true,
   "sourcePdf": "edison-infiniti-100-percent.pdf",
   "extensionData": {
     "projectKeywords": ["Edison Infiniti", "Infiniti of Edison", "Edison", "842 Route 1"],
