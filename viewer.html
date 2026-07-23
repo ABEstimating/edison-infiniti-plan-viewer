@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#0b1220">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>AB Plan Viewer</title>
+<link rel="stylesheet" href="viewer.css?v=1">
+</head>
+<body>
+<div id="app" class="app">
+<aside id="sidebar" class="sidebar">
+  <div class="brand"><div class="brandRow"><div class="mark">AB</div><div class="brandText"><h1>AB Plan Viewer</h1><p id="projectLabel">Loading project…</p></div><a class="home" href="index.html" title="Project dashboard">⌂</a></div></div>
+  <div><div class="setBox"><label class="label">Project</label><select id="projectSelect" class="projectSelect"></select></div><div class="search"><div class="searchWrap"><svg class="searchIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></svg><input id="search" type="search" placeholder="Search all plan text"><button id="clear" class="clear" aria-label="Clear search">×</button></div><div id="searchStatus" class="statusLine">Loading searchable plan data…</div></div></div>
+  <nav id="sheetList" class="list" aria-label="Plan sheets"></nav>
+  <div class="sideFoot"><span><span id="statusDot" class="dot"></span><span id="status">Loading sheet</span></span><span id="count">0 sheets</span></div>
+</aside>
+<div id="shade" class="shade"></div>
+<main class="main">
+  <header class="toolbar">
+    <div class="title"><strong id="currentTitle">Loading plans…</strong><span id="currentMeta">AB Plan Viewer</span></div>
+    <div class="tools"><button id="prev" class="btn icon" title="Previous sheet">‹</button><div class="pageCtl"><input id="pageInput" type="number" min="1" value="1"><span id="pageTotal">/ 0</span></div><button id="next" class="btn icon" title="Next sheet">›</button></div>
+    <div class="tools"><button id="zoomOut" class="btn icon" title="Zoom out">−</button><span id="zoomLabel" class="zoom">Fit</span><button id="zoomIn" class="btn icon" title="Zoom in">＋</button><button id="fitWidth" class="btn text optional">Fit width</button><button id="fitPage" class="btn text optional">Fit page</button></div>
+    <div class="tools"><button id="rotateLeft" class="btn icon optional" title="Rotate left">↶</button><select id="orientation" class="orientation" title="Drawing orientation"><option value="0">Original</option><option value="90">Right 90°</option><option value="180">180°</option><option value="270">Left 90°</option></select><button id="rotateRight" class="btn icon optional" title="Rotate right">↷</button></div>
+    <div class="tools optional"><button id="full" class="btn icon" title="Full screen">⛶</button><button id="share" class="btn icon" title="Copy share link">↗</button></div>
+    <div class="tools"><a id="download" class="btn icon primary" href="#" title="Download full PDF">↓</a></div>
+  </header>
+  <section id="viewer" class="viewer">
+    <div id="scroll" class="scroll"><div id="stage" class="stage"><img id="plan" class="plan" alt="Selected plan sheet" draggable="false"><div id="highlights" class="highlights"></div></div></div>
+    <div id="loading" class="loading"><div class="loadingBox"><div class="spinner"></div><p id="loadingText">Loading project…</p></div></div>
+    <div id="error" class="error"><div class="errorBox"><p id="errorText">This plan sheet could not be loaded.</p><button id="retry" class="btn text primary" style="margin-top:12px">Retry</button></div></div>
+  </section>
+</main>
+<header class="mobileTop"><button id="mobileMenu" class="mIcon" aria-label="Open sheet list">☰</button><div class="mTitle"><strong id="mobileTitle">Loading plans…</strong><span id="mobileMeta">AB Plan Viewer</span></div><button id="mobileHide" class="mIcon" aria-label="Hide controls">⌄</button></header>
+<footer class="mobileBottom"><button id="mPrev" class="mIcon">‹</button><button id="mPage" class="mPill">0 / 0</button><button id="mNext" class="mIcon">›</button><button id="mMinus" class="mIcon">−</button><button id="mFit" class="mPill">Fit</button><button id="mPlus" class="mIcon">＋</button><button id="mRotate" class="mIcon">↻</button></footer>
+<button id="floatPrev" class="floatNav floatPrev" aria-label="Previous sheet">‹</button><button id="floatNext" class="floatNav floatNext" aria-label="Next sheet">›</button>
+</div>
+<div id="toast" class="toast"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js"></script>
+<script src="viewer.js?v=1"></script>
+</body>
+</html>
