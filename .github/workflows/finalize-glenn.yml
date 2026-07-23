@@ -1,0 +1,125 @@
+name: Finalize Glenn CDJR assets
+
+on:
+  push:
+    paths:
+      - '.github/workflows/finalize-glenn.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Restore verified plan assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p glenn-assets-v2
+
+          fetch_text_blob() {
+            local sha="$1"
+            local path="$2"
+            curl -fsSL \
+              -H "Authorization: Bearer ${GH_TOKEN}" \
+              -H "Accept: application/vnd.github+json" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              "https://api.github.com/repos/${GITHUB_REPOSITORY}/git/blobs/${sha}" \
+              | python3 -c 'import base64,json,sys; d=json.load(sys.stdin); sys.stdout.write(base64.b64decode(d["content"]).decode("utf-8"))' \
+              > "$path"
+          }
+
+          fetch_text_blob a70a0d364db313f186d22a6909717c12f75d1914 glenn-assets-v2/addendum-01.b64
+          fetch_text_blob bb0780b556c0a9da70972d140d41afdda10ae0ed glenn-assets-v2/addendum-02.b64
+
+          fetch_text_blob 4c29c82e205ea8b02d0e79f4ab7a0a31f474db18 glenn-assets-v2/landscape-01.b64
+          fetch_text_blob e8ffd9dc82a84b0aa5d7464bd3d7b3cb1088098d glenn-assets-v2/landscape-02.b64
+          fetch_text_blob 0e00a47a480ee1897925ec99e1f09aa54cba52db glenn-assets-v2/landscape-03.b64
+          fetch_text_blob b37a12f95d94bd86fb5e2e0290ea9c5bd52a4672 glenn-assets-v2/landscape-04.b64
+          fetch_text_blob 183c8cb9cb77850cefe8396b98b5647ab66a8c6a glenn-assets-v2/landscape-05.b64
+          fetch_text_blob b05e16d75cae82a3620d6d5ef9c593b10cc5240c glenn-assets-v2/landscape-06.b64
+          fetch_text_blob 7864b41a3572503336303d9b3ffb1e5947dd003b glenn-assets-v2/landscape-07.b64
+          fetch_text_blob ac73b4dd751464208bcff7045398d3df82b78817 glenn-assets-v2/landscape-08.b64
+
+          fetch_text_blob be777126418dde86d47ebd77415fa464c3e33d6c glenn-assets-v2/electrical-01.b64
+          fetch_text_blob 3bde2ab5748177e971544d3e6ea066dbfcc57936 glenn-assets-v2/electrical-02.b64
+          fetch_text_blob 9db99e66131495e373323d2c35ae31077df3d4b5 glenn-assets-v2/electrical-03.b64
+          fetch_text_blob 9a9f255c34432a3f989f058cc627c02a124e1a69 glenn-assets-v2/electrical-04.b64
+          fetch_text_blob 4d4dfb3eba5cad6b90bfa3c71a15c917780b5f0b glenn-assets-v2/electrical-05.b64
+
+          python3 - <<'PY'
+          import json
+
+          manifest = {
+              "schemaVersion": 1,
+              "packageType": "abplans",
+              "packageVersion": "1.0.1",
+              "projectId": "glenn-cdjr",
+              "projectName": "Glenn CDJR",
+              "address": "6424 KY-146, Crestwood, KY 40014",
+              "setName": "Addendum No. 1 + E1.01 Rev. 0",
+              "setDate": "2026-07-10",
+              "defaultRotation": 0,
+              "mobileDefaultRotation": 0,
+              "allowBrowserOcr": True,
+              "extensionData": {
+                  "projectKeywords": ["Glenn CDJR", "Glenn CDRJ", "Crestwood", "6424 KY-146"],
+                  "projectAliases": ["Glenn Chrysler Dodge Jeep Ram", "Glenn Dealership"],
+                  "city": "Crestwood",
+                  "state": "KY",
+                  "drawingSetDate": "2026-07-10",
+                  "sheetCount": 3
+              },
+              "sheets": [
+                  {
+                      "number": "ADD-1",
+                      "title": "Addendum No. 1",
+                      "discipline": "Addenda",
+                      "mime": "image/png",
+                      "chunks": [
+                          "glenn-assets-v2/addendum-01.b64",
+                          "glenn-assets-v2/addendum-02.b64"
+                      ],
+                      "page": 1
+                  },
+                  {
+                      "number": "1",
+                      "title": "Landscape Plan",
+                      "discipline": "Landscape",
+                      "mime": "image/png",
+                      "chunks": [f"glenn-assets-v2/landscape-{i:02d}.b64" for i in range(1, 9)],
+                      "page": 2
+                  },
+                  {
+                      "number": "E1.01",
+                      "title": "Showroom Area Power Plan",
+                      "discipline": "Electrical",
+                      "mime": "image/png",
+                      "chunks": [f"glenn-assets-v2/electrical-{i:02d}.b64" for i in range(1, 6)],
+                      "page": 3
+                  }
+              ]
+          }
+
+          with open("project-glenn-cdjr.json", "w", encoding="utf-8") as f:
+              json.dump(manifest, f, indent=2)
+              f.write("\n")
+          PY
+
+          git config user.name "AB Plan Viewer Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add glenn-assets-v2 project-glenn-cdjr.json
+          if git diff --cached --quiet; then
+            echo "Verified Glenn assets are already current."
+          else
+            git commit -m "Finalize verified Glenn CDJR plan assets"
+            git push
+          fi
