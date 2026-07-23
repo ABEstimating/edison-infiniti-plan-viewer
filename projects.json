@@ -11,6 +11,16 @@
       "sheetCount": 14,
       "manifest": "project-edison-infiniti.json",
       "mobileViewer": "mobile.html"
+    },
+    {
+      "id": "glenn-cdjr",
+      "name": "Glenn CDJR",
+      "address": "6424 KY-146, Crestwood, KY 40014",
+      "setName": "Addendum No. 1 + E1.01 Rev. 0",
+      "setDate": "2026-07-10",
+      "sheetCount": 3,
+      "manifest": "project-glenn-cdjr.json",
+      "mobileViewer": "mobile.html"
     }
   ]
 }
