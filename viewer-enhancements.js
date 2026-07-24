@@ -29,12 +29,6 @@
     return sheetGroup(sheet) || 'Plans';
   }
 
-  function setMobileDisciplineFocus(active) {
-    const sidebar = $('sidebar');
-    if (!sidebar) return;
-    sidebar.classList.toggle('mobileDisciplineFocus', Boolean(active));
-  }
-
   function buildMobileDisciplines() {
     const groups = [];
     const byDiscipline = new Map();
@@ -49,70 +43,74 @@
     return { groups, byDiscipline };
   }
 
-  function renderMobileDisciplineIndex(groups, byDiscipline) {
-    mobileActiveDiscipline = '';
-    setMobileDisciplineFocus(false);
+  function renderMobileAccordion(groups, byDiscipline) {
     const list = $('sheetList');
     list.innerHTML = '';
+    $('sidebar')?.classList.remove('mobileDisciplineFocus');
 
     const currentDiscipline = majorForSheet(currentSheet());
+    if (!mobileActiveDiscipline || !byDiscipline.has(mobileActiveDiscipline)) {
+      mobileActiveDiscipline = currentDiscipline;
+    }
+
     const heading = document.createElement('div');
     heading.className = 'mobileDisciplineIntro';
-    heading.innerHTML = '<strong>Plan disciplines</strong><span>Select a discipline to view its sheets.</span>';
+    heading.innerHTML = '<strong>Plan disciplines</strong><span>Tap a discipline to expand or collapse its sheets.</span>';
     list.appendChild(heading);
 
     for (const discipline of groups) {
       const entries = byDiscipline.get(discipline) || [];
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.className = `mobileDisciplineButton${discipline === currentDiscipline ? ' current' : ''}`;
-      button.innerHTML = `<span><strong>${esc(discipline)}</strong><small>${entries.length} sheet${entries.length === 1 ? '' : 's'}</small></span><span class="mobileDisciplineArrow">›</span>`;
-      button.onclick = () => {
-        mobileActiveDiscipline = discipline;
+      const expanded = mobileActiveDiscipline === discipline;
+      const section = document.createElement('section');
+      section.className = `mobileDisciplineSection${expanded ? ' expanded' : ''}`;
+
+      const toggle = document.createElement('button');
+      toggle.type = 'button';
+      toggle.className = `mobileDisciplineButton${discipline === currentDiscipline ? ' current' : ''}`;
+      toggle.setAttribute('aria-expanded', String(expanded));
+      toggle.innerHTML = `<span><strong>${esc(discipline)}</strong><small>${entries.length} sheet${entries.length === 1 ? '' : 's'}</small></span><span class="mobileDisciplineArrow">›</span>`;
+      toggle.onclick = () => {
+        mobileActiveDiscipline = expanded ? '' : discipline;
         renderSheets();
-        requestAnimationFrame(() => { list.scrollTop = 0; });
+        requestAnimationFrame(() => {
+          const next = [...document.querySelectorAll('.mobileDisciplineButton')].find(button => button.textContent.includes(discipline));
+          next?.scrollIntoView({ block: 'start', behavior: 'smooth' });
+        });
       };
-      list.appendChild(button);
-    }
-  }
+      section.appendChild(toggle);
 
-  function renderMobileDisciplineDetail(discipline, entries) {
-    setMobileDisciplineFocus(true);
-    const list = $('sheetList');
-    list.innerHTML = '';
+      if (expanded) {
+        const content = document.createElement('div');
+        content.className = 'mobileDisciplineContent';
+        let lastSubsection = '';
 
-    const header = document.createElement('div');
-    header.className = 'mobileDisciplineHeader';
-    header.innerHTML = `<button type="button" class="mobileDisciplineBack" aria-label="Back to all disciplines">‹</button><span><strong>${esc(discipline)}</strong><small>${entries.length} sheet${entries.length === 1 ? '' : 's'}</small></span>`;
-    header.querySelector('button').onclick = () => {
-      mobileActiveDiscipline = '';
-      renderSheets();
-      requestAnimationFrame(() => { list.scrollTop = 0; });
-    };
-    list.appendChild(header);
+        for (const { sheet, index } of entries) {
+          const subsection = sheetGroup(sheet) || discipline;
+          if (subsection !== lastSubsection) {
+            const sub = document.createElement('div');
+            sub.className = 'mobileSubsection';
+            sub.textContent = subsection;
+            content.appendChild(sub);
+            lastSubsection = subsection;
+          }
 
-    let lastSubsection = '';
-    for (const { sheet, index } of entries) {
-      const subsection = sheetGroup(sheet) || discipline;
-      if (subsection !== lastSubsection) {
-        const sub = document.createElement('div');
-        sub.className = 'mobileSubsection';
-        sub.textContent = subsection;
-        list.appendChild(sub);
-        lastSubsection = subsection;
+          const button = document.createElement('button');
+          button.className = `sheet${index + 1 === page ? ' active' : ''}`;
+          button.innerHTML = `<span class="num">${esc(sheetNumber(sheet))}</span><span class="sheetName">${esc(sheetNumber(sheet))} - ${esc(sheetTitle(sheet))}</span>`;
+          button.onclick = () => {
+            activeSearch = '';
+            go(index + 1);
+          };
+          content.appendChild(button);
+        }
+
+        section.appendChild(content);
       }
 
-      const button = document.createElement('button');
-      button.className = `sheet${index + 1 === page ? ' active' : ''}`;
-      button.innerHTML = `<span class="num">${esc(sheetNumber(sheet))}</span><span class="sheetName">${esc(sheetNumber(sheet))} - ${esc(sheetTitle(sheet))}</span>`;
-      button.onclick = () => {
-        activeSearch = '';
-        go(index + 1);
-      };
-      list.appendChild(button);
+      list.appendChild(section);
     }
 
-    list.querySelector('.active')?.scrollIntoView({ block: 'nearest' });
+    list.querySelector('.sheet.active')?.scrollIntoView({ block: 'nearest' });
   }
 
   function renderDesktopGroups() {
@@ -152,18 +150,14 @@
   renderSheets = function enhancedRenderSheets() {
     const q = $('search').value.trim();
     if (q) {
-      if (isMobile) setMobileDisciplineFocus(false);
+      $('sidebar')?.classList.remove('mobileDisciplineFocus');
       renderSearch();
       return;
     }
 
     if (isMobile) {
       const { groups, byDiscipline } = buildMobileDisciplines();
-      if (mobileActiveDiscipline && byDiscipline.has(mobileActiveDiscipline)) {
-        renderMobileDisciplineDetail(mobileActiveDiscipline, byDiscipline.get(mobileActiveDiscipline));
-      } else {
-        renderMobileDisciplineIndex(groups, byDiscipline);
-      }
+      renderMobileAccordion(groups, byDiscipline);
     } else {
       renderDesktopGroups();
     }
