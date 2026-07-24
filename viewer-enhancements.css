@@ -1,0 +1,18 @@
+@media (min-width:761px){
+  .app{transition:grid-template-columns .18s ease}
+  .sidebar{transition:transform .18s ease,opacity .18s ease}
+  .app.sidebarCollapsed{grid-template-columns:0 1fr}
+  .app.sidebarCollapsed .sidebar{transform:translateX(-100%);opacity:0;pointer-events:none}
+  .desktopSidebarToggle{display:none!important;flex:0 0 auto;font-size:20px;font-weight:800;letter-spacing:2px}
+  .app.sidebarCollapsed .desktopSidebarToggle{display:inline-flex!important}
+}
+.groupToggle{width:100%;min-height:34px;margin:7px 0 3px;padding:7px 12px;border:0;border-radius:7px;background:transparent;color:#8993a5;display:flex;align-items:center;gap:7px;text-align:left;font-size:10px;font-weight:850;text-transform:uppercase;letter-spacing:.08em}
+.groupToggle:hover{background:#f2f5f9;color:#526075}
+.groupChevron{width:13px;flex:0 0 13px;font-size:17px;line-height:1;transform:rotate(0deg);transition:transform .15s ease}
+.groupToggle.expanded .groupChevron{transform:rotate(90deg)}
+.groupLabel{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.groupCount{margin-left:auto;flex:0 0 auto;padding-left:8px;color:#98a2b3;font-size:9px;letter-spacing:0}
+.list{padding-right:12px}
+.sheet,.result{grid-template-columns:46px minmax(0,1fr);padding:8px 14px 8px 7px}
+.sheetName{display:block;min-width:0;padding-right:4px;white-space:normal;overflow-wrap:anywhere;word-break:normal}
+.resultTitle{min-width:0;padding-right:4px}
