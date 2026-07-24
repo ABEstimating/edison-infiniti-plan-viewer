@@ -9,6 +9,9 @@
   document.head.appendChild(style);
 
   const linkCache = new Map();
+  const explicitPages = new Map();
+  let explicitIndexPromise = null;
+  let explicitIndexPath = '';
   let aliasSignature = '';
   let aliasMap = new Map();
 
@@ -145,6 +148,44 @@
     return found;
   }
 
+  function loadExplicitIndex() {
+    const path = manifest?.sheetLinkIndex || '';
+    if (!path) return Promise.resolve(false);
+    if (explicitIndexPromise && explicitIndexPath === path) return explicitIndexPromise;
+
+    explicitIndexPath = path;
+    explicitPages.clear();
+    explicitIndexPromise = fetch(resolveAsset(path), { cache: 'no-store' })
+      .then(response => {
+        if (!response.ok) throw new Error(`Linked-sheet index unavailable: ${response.status}`);
+        return response.json();
+      })
+      .then(data => {
+        const pages = Array.isArray(data.pages) ? data.pages : [];
+        for (const entry of pages) {
+          const pageNumber = Number(entry.page);
+          if (!Number.isFinite(pageNumber) || pageNumber < 1) continue;
+          const links = Array.isArray(entry.links) ? entry.links.filter(link =>
+            Number.isFinite(Number(link.x)) &&
+            Number.isFinite(Number(link.y)) &&
+            Number.isFinite(Number(link.w)) &&
+            Number.isFinite(Number(link.h)) &&
+            Number.isFinite(Number(link.targetPage))
+          ) : [];
+          explicitPages.set(pageNumber, links);
+        }
+        linkCache.clear();
+        renderSheetLinks();
+        return true;
+      })
+      .catch(error => {
+        console.warn(error);
+        return false;
+      });
+
+    return explicitIndexPromise;
+  }
+
   function linkedSheetUrl(targetPage) {
     const url = new URL('viewer.html', location.href);
     url.searchParams.set('project', projectId);
@@ -156,32 +197,42 @@
   function renderSheetLinks() {
     if (!sheetLinkLayer) return;
     sheetLinkLayer.innerHTML = '';
-    if (!Array.isArray(sheets) || !sheets.length || !pageWords[page - 1]?.length) return;
+    if (!Array.isArray(sheets) || !sheets.length) return;
 
-    const cacheKey = `${projectId}:${manifest?.packageVersion || manifest?.setDate || '1'}:${page}:${pageWords[page - 1].length}`;
-    let links = linkCache.get(cacheKey);
-    if (!links) {
-      links = detectLinks(page - 1);
-      linkCache.set(cacheKey, links);
+    if (manifest?.sheetLinkIndex && !explicitIndexPromise) loadExplicitIndex();
+
+    let links;
+    if (explicitPages.has(page)) {
+      links = explicitPages.get(page) || [];
+    } else {
+      if (!pageWords[page - 1]?.length) return;
+      const cacheKey = `${projectId}:${manifest?.packageVersion || manifest?.setDate || '1'}:${page}:${pageWords[page - 1].length}`;
+      links = linkCache.get(cacheKey);
+      if (!links) {
+        links = detectLinks(page - 1);
+        linkCache.set(cacheKey, links);
+      }
     }
 
     for (const link of links) {
-      const target = sheets[link.targetPage - 1];
-      if (!target) continue;
-      const padX = Math.min(0.006, Math.max(0.0015, link.w * 0.28));
-      const padY = Math.min(0.006, Math.max(0.0015, link.h * 0.35));
-      const left = Math.max(0, link.x - padX);
-      const top = Math.max(0, link.y - padY);
+      const targetPage = Number(link.targetPage);
+      const target = sheets[targetPage - 1];
+      if (!target || targetPage === page) continue;
+      const x = Number(link.x), y = Number(link.y), w = Number(link.w), h = Number(link.h);
+      const padX = Math.min(0.006, Math.max(0.0015, w * 0.28));
+      const padY = Math.min(0.006, Math.max(0.0015, h * 0.35));
+      const left = Math.max(0, x - padX);
+      const top = Math.max(0, y - padY);
       const anchor = document.createElement('a');
       anchor.className = 'sheetLink';
-      anchor.href = linkedSheetUrl(link.targetPage);
+      anchor.href = linkedSheetUrl(targetPage);
       anchor.target = '_blank';
       anchor.rel = 'noopener';
       anchor.style.left = `${left * 100}%`;
       anchor.style.top = `${top * 100}%`;
-      anchor.style.width = `${Math.min(1 - left, link.w + padX * 2) * 100}%`;
-      anchor.style.height = `${Math.min(1 - top, link.h + padY * 2) * 100}%`;
-      const label = `${sheetNumber(target)} - ${sheetTitle(target)}`;
+      anchor.style.width = `${Math.min(1 - left, w + padX * 2) * 100}%`;
+      anchor.style.height = `${Math.min(1 - top, h + padY * 2) * 100}%`;
+      const label = link.label || `${sheetNumber(target)} - ${sheetTitle(target)}`;
       anchor.title = `Open ${label} in a new tab`;
       anchor.setAttribute('aria-label', `Open ${label} in a new tab`);
       anchor.addEventListener('mousedown', event => event.stopPropagation());
@@ -223,10 +274,11 @@
   let attempts = 0;
   const initialize = setInterval(() => {
     attempts++;
-    if (Array.isArray(sheets) && sheets.length) {
+    if (Array.isArray(sheets) && sheets.length && manifest) {
+      loadExplicitIndex();
       transformImage();
       renderSheetLinks();
-      if (pageWords[page - 1]?.length || attempts > 100) clearInterval(initialize);
+      if (pageWords[page - 1]?.length || explicitPages.has(page) || attempts > 100) clearInterval(initialize);
     } else if (attempts > 100) clearInterval(initialize);
   }, 100);
 })();
