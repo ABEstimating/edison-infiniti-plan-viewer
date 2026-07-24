@@ -1,0 +1,109 @@
+name: Build Glenn CDJR R2 Package
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/build-glenn-r2-package.yml
+      - project-glenn-cdjr.json
+      - glenn-assets/**
+      - glenn-pdfs/**
+      - glenn-search-index-v4.json.gz
+
+permissions:
+  contents: write
+
+jobs:
+  build-package:
+    if: ${{ !contains(github.event.head_commit.message || '', '[skip glenn package]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Build and validate upload package
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf _glenn_r2_package
+          mkdir -p _glenn_r2_package/glenn-cdjr packages
+          cp project-glenn-cdjr.json _glenn_r2_package/glenn-cdjr/
+          cp glenn-search-index-v4.json.gz _glenn_r2_package/glenn-cdjr/
+          cp -R glenn-assets _glenn_r2_package/glenn-cdjr/
+          cp -R glenn-pdfs _glenn_r2_package/glenn-cdjr/
+
+          cat > _glenn_r2_package/glenn-cdjr/README-UPLOAD.txt <<'EOF'
+          GLENN CDJR - AB PLAN VIEWER R2 UPLOAD PACKAGE
+
+          Upload this ZIP through the AB Plan Viewer administrator page.
+          Project slug: glenn-cdjr
+          Sheet count: 101
+
+          The ZIP contains the root project manifest, 101 prepared PNG sheets,
+          the prepared searchable-text index, and the three original PDF sources.
+          EOF
+
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path('_glenn_r2_package/glenn-cdjr')
+          manifest_path = root / 'project-glenn-cdjr.json'
+          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+          sheets = manifest.get('sheets') or []
+          assert manifest.get('projectId') == 'glenn-cdjr', 'Incorrect projectId'
+          assert len(sheets) == 101, f'Expected 101 sheets, found {len(sheets)}'
+
+          referenced = []
+          for sheet in sheets:
+              referenced.append(sheet.get('image') or sheet.get('file') or sheet.get('f'))
+          for key in ('searchIndex', 'searchIndexGzip', 'sheetLinkIndex', 'sourcePdf', 'originalPdf', 'downloadPackage'):
+              value = manifest.get(key)
+              if value:
+                  referenced.append(value)
+          sources = manifest.get('pdfSources') or {}
+          if isinstance(sources, dict):
+              for source in sources.values():
+                  if isinstance(source, dict):
+                      referenced.append(source.get('path') or source.get('url') or source.get('file'))
+          elif isinstance(sources, list):
+              for source in sources:
+                  if isinstance(source, dict):
+                      referenced.append(source.get('path') or source.get('url') or source.get('file'))
+
+          missing = [path for path in referenced if path and not (root / path).is_file()]
+          if missing:
+              raise SystemExit('Missing referenced files:\n' + '\n'.join(missing))
+          print(f'Validated {len(sheets)} sheets and {len([x for x in referenced if x])} referenced files.')
+          PY
+
+          python - <<'PY'
+          from pathlib import Path
+          import zipfile
+
+          source = Path('_glenn_r2_package/glenn-cdjr')
+          output = Path('packages/Glenn-CDJR-R2-Upload-Package.zip')
+          with zipfile.ZipFile(output, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=6, allowZip64=True) as archive:
+              for path in sorted(source.rglob('*')):
+                  if path.is_file():
+                      archive.write(path, Path('glenn-cdjr') / path.relative_to(source))
+          print(f'Created {output} ({output.stat().st_size:,} bytes)')
+          PY
+
+          sha256sum packages/Glenn-CDJR-R2-Upload-Package.zip > packages/Glenn-CDJR-R2-Upload-Package.sha256.txt
+
+      - name: Commit generated package
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add packages/Glenn-CDJR-R2-Upload-Package.zip packages/Glenn-CDJR-R2-Upload-Package.sha256.txt
+          if git diff --cached --quiet; then
+            echo "Package is already current."
+            exit 0
+          fi
+          git commit -m "Build Glenn CDJR R2 upload package [skip glenn package]"
+          git push
