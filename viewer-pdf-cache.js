@@ -4,6 +4,7 @@
   if (!window.pdfjsLib) return;
   pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
+  const DEFAULT_SOURCE_ID = '__sourcePdf';
   const sourceBlobPromises = new Map();
   const pdfDocumentPromises = new Map();
   let renderSerial = 0;
@@ -21,8 +22,8 @@
   cacheBadge.id = 'pdfCacheBadge';
   cacheBadge.type = 'button';
   cacheBadge.className = 'pdfCacheBadge';
-  cacheBadge.textContent = 'PDF cache pending';
-  cacheBadge.title = 'Original PDF project cache status';
+  cacheBadge.textContent = 'PDF sharp mode pending';
+  cacheBadge.title = 'Original PDF rendering and project cache status';
   document.querySelector('.toolbar')?.appendChild(cacheBadge);
 
   function setCacheBadge(text, state = '') {
@@ -36,9 +37,18 @@
 
   function sourceEntries() {
     const cfg = manifest?.pdfSources;
-    if (!cfg) return [];
-    if (Array.isArray(cfg)) return cfg.map((value, index) => [String(value.id ?? index), value]);
-    return Object.entries(cfg);
+    if (cfg) {
+      if (Array.isArray(cfg)) return cfg.map((value, index) => [String(value.id ?? index), value]);
+      return Object.entries(cfg);
+    }
+    if (manifest?.sourcePdf) {
+      return [[DEFAULT_SOURCE_ID, {
+        path: manifest.sourcePdf,
+        name: manifest.projectName ? `${manifest.projectName} linked searchable plans` : 'Linked searchable plans',
+        size: Number(manifest.sourcePdfSize) || 0
+      }]];
+    }
+    return [];
   }
 
   function sourceConfig(id) {
@@ -52,8 +62,9 @@
 
   function sheetPdfInfo(index) {
     const sheet = sheets[index] || {};
-    const source = sheet.pdfSource ?? sheet.pdf ?? sheet.sourcePdfId;
-    const pageNumber = Number(sheet.pdfPage ?? sheet.sourcePage ?? sheet.page);
+    let source = sheet.pdfSource ?? sheet.pdf ?? sheet.sourcePdfId;
+    if ((source === undefined || source === null || source === '') && manifest?.sourcePdf) source = DEFAULT_SOURCE_ID;
+    const pageNumber = Number(sheet.pdfPage ?? sheet.sourcePage ?? sheet.page ?? index + 1);
     if (source === undefined || source === null || !Number.isFinite(pageNumber) || pageNumber < 1) return null;
     return { source: String(source), pageNumber };
   }
@@ -119,7 +130,7 @@
 
     const expected = Number(response.headers.get('content-length')) || Number(sourceConfig(sourceId)?.size) || 0;
     if (!response.body || !expected) {
-      setCacheBadge(`Caching PDFs ${ordinal}/${total}`);
+      setCacheBadge(total > 1 ? `Caching PDFs ${ordinal}/${total}` : 'Loading sharp PDF');
       return response.blob();
     }
 
@@ -132,7 +143,7 @@
       chunks.push(value);
       received += value.byteLength;
       const percent = Math.min(100, Math.round((received / expected) * 100));
-      setCacheBadge(`Caching ${ordinal}/${total} · ${percent}%`);
+      setCacheBadge(total > 1 ? `Caching ${ordinal}/${total} · ${percent}%` : `Loading PDF · ${percent}%`);
     }
     return new Blob(chunks, { type: 'application/pdf' });
   }
@@ -189,7 +200,7 @@
       toast('Original PDF project cached for fast repeat visits.');
     } catch (error) {
       console.warn('Whole-project PDF cache did not finish', error);
-      setCacheBadge('PDF files not uploaded', 'error');
+      setCacheBadge('PDF unavailable', 'error');
     }
   }
 
@@ -225,16 +236,17 @@
 
       const displayedWidth = Math.max(1, naturalW * scale);
       const displayedHeight = Math.max(1, naturalH * scale);
-      const deviceRatio = Math.min(2.25, Math.max(1, window.devicePixelRatio || 1));
-      const requestedWidth = Math.max(900, displayedWidth * deviceRatio * 1.15);
-      const requestedHeight = Math.max(900, displayedHeight * deviceRatio * 1.15);
+      const deviceRatio = Math.min(2.5, Math.max(1, window.devicePixelRatio || 1));
+      const requestedWidth = Math.max(1200, displayedWidth * deviceRatio * 1.2);
+      const requestedHeight = Math.max(900, displayedHeight * deviceRatio * 1.2);
 
       if (!force && pdfCanvas.dataset.page === String(index + 1)) {
         const renderedWidth = Number(pdfCanvas.dataset.renderedWidth) || 0;
-        if (renderedWidth >= requestedWidth * 0.9) return true;
+        const renderedHeight = Number(pdfCanvas.dataset.renderedHeight) || 0;
+        if (renderedWidth >= requestedWidth * 0.9 && renderedHeight >= requestedHeight * 0.9) return true;
       }
-      const maxDimension = 8192;
-      const maxPixels = 36000000;
+      const maxDimension = 10000;
+      const maxPixels = 48000000;
       let renderScale = Math.max(requestedWidth / baseViewport.width, requestedHeight / baseViewport.height);
       renderScale = Math.min(renderScale, maxDimension / Math.max(baseViewport.width, baseViewport.height));
       const estimatedPixels = baseViewport.width * baseViewport.height * renderScale * renderScale;
@@ -257,13 +269,16 @@
       pdfContext.drawImage(scratch, 0, 0);
       pdfCanvas.dataset.page = String(index + 1);
       pdfCanvas.dataset.renderedWidth = String(requestedWidth);
+      pdfCanvas.dataset.renderedHeight = String(requestedHeight);
       syncPdfCanvas();
       pdfCanvas.classList.add('ready');
       plan.classList.add('previewUnderPdf');
+      setCacheBadge('Sharp PDF active', 'ready');
       ready();
       return true;
     } catch (error) {
       console.warn(`Sharp PDF render unavailable for sheet ${index + 1}`, error);
+      setCacheBadge('PDF render failed', 'error');
       return false;
     }
   }
@@ -288,32 +303,38 @@
   const originalZoomAt = zoomAt;
   zoomAt = function enhancedPdfZoomAt(mult, clientX, clientY) {
     const result = originalZoomAt(mult, clientX, clientY);
-    schedulePdfRender(false, 150);
+    schedulePdfRender(false, 130);
     return result;
   };
 
   const originalFit = fit;
   fit = function enhancedPdfFit(which = mode) {
     const result = originalFit(which);
-    schedulePdfRender(false, 90);
+    schedulePdfRender(false, 80);
     return result;
   };
 
   cacheBadge.onclick = () => {
     cacheStarted = false;
     sourceBlobPromises.clear();
-    cacheWholeProject();
+    pdfDocumentPromises.clear();
+    if (manifest?.cacheProjectOnLoad) cacheWholeProject();
+    schedulePdfRender(true, 0);
   };
 
   const manifestWatcher = setInterval(() => {
     if (!manifest || !Array.isArray(sheets) || !sheets.length) return;
     clearInterval(manifestWatcher);
     if (!sourceEntries().length) {
-      setCacheBadge('Preview mode', 'error');
+      setCacheBadge('PNG preview only', 'error');
       return;
     }
-    setCacheBadge('Caching original PDFs');
-    cacheWholeProject();
+    if (manifest.cacheProjectOnLoad) {
+      setCacheBadge('Caching original PDFs');
+      cacheWholeProject();
+    } else {
+      setCacheBadge('PDF sharp mode');
+    }
     schedulePdfRender(true, 0);
   }, 50);
 })();
