@@ -1,0 +1,86 @@
+name: Configure Glenn PDF cache
+
+on:
+  push:
+    paths:
+      - '.github/workflows/configure-glenn-pdf-cache.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  configure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure original PDF sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path('project-glenn-cdjr.json')
+          data = json.loads(path.read_text(encoding='utf-8'))
+          data['packageVersion'] = '5.0.0'
+          data['cacheProjectOnLoad'] = True
+          data['pdfSources'] = {
+              'addendum': {
+                  'path': 'glenn-pdfs/addendum.pdf',
+                  'name': 'Addendum No. 1 and Landscape',
+                  'size': 1408855
+              },
+              'civil': {
+                  'path': 'glenn-pdfs/civil.pdf',
+                  'name': 'Civil Set',
+                  'size': 14477983
+              },
+              'building': {
+                  'path': 'glenn-pdfs/building-mep.pdf',
+                  'name': 'Building and MEP Set',
+                  'size': 14995109
+              }
+          }
+
+          sheets = data.get('sheets', [])
+          if len(sheets) != 101:
+              raise SystemExit(f'Expected 101 Glenn sheets, found {len(sheets)}')
+
+          for index, sheet in enumerate(sheets):
+              if index < 2:
+                  sheet['pdfSource'] = 'addendum'
+                  sheet['pdfPage'] = index + 1
+              elif index < 17:
+                  sheet['pdfSource'] = 'civil'
+                  sheet['pdfPage'] = index - 1
+              else:
+                  sheet['pdfSource'] = 'building'
+                  sheet['pdfPage'] = index - 16
+
+          path.write_text(json.dumps(data, indent=2) + '\n', encoding='utf-8')
+          PY
+
+          mkdir -p glenn-pdfs
+          cat > glenn-pdfs/README.txt <<'TXT'
+          Original Glenn CDJR PDF sources used for sharp PDF.js rendering and whole-project browser caching.
+
+          Required exact filenames:
+          - addendum.pdf
+          - civil.pdf
+          - building-mep.pdf
+          TXT
+
+          git config user.name "AB Plan Viewer Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add project-glenn-cdjr.json glenn-pdfs/README.txt
+          if git diff --cached --quiet; then
+            echo "Glenn PDF cache configuration is already current."
+          else
+            git commit -m "Configure Glenn original PDF cache"
+            git push
+          fi
