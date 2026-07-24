@@ -1,0 +1,7 @@
+name = "ab-plan-viewer"
+compatibility_date = "2026-07-24"
+pages_build_output_dir = "."
+
+[[r2_buckets]]
+binding = "PROJECT_FILES"
+bucket_name = "ab-plan-viewer-files"
