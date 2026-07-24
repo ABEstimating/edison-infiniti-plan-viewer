@@ -1,0 +1,53 @@
+name: Fix Glenn asset paths
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-glenn-paths.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Point Glenn manifest to uploaded PNG folder
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+
+          path = Path('project-glenn-cdjr.json')
+          data = json.loads(path.read_text(encoding='utf-8'))
+          changed = 0
+          for sheet in data.get('sheets', []):
+              image = sheet.get('image')
+              if isinstance(image, str) and image.startswith('glenn-full-assets-v4/'):
+                  sheet['image'] = image.replace('glenn-full-assets-v4/', 'glenn-assets/', 1)
+                  changed += 1
+          data['packageVersion'] = '4.0.1'
+          path.write_text(json.dumps(data, indent=2) + '\n', encoding='utf-8')
+          print(f'Updated {changed} Glenn sheet paths.')
+          if changed not in (0, 101):
+              raise SystemExit(f'Expected 101 or 0 changes, got {changed}')
+          PY
+
+      - name: Commit fix
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "AB Plan Viewer Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add project-glenn-cdjr.json
+          if git diff --cached --quiet; then
+            echo "Glenn asset paths are already correct."
+          else
+            git commit -m "Fix Glenn CDJR asset paths"
+            git push
+          fi
