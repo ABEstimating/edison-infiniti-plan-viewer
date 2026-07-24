@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#0b1220">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <title>AB Plan Viewer</title>
-<link rel="stylesheet" href="viewer.css?v=2">
+<link rel="stylesheet" href="viewer.css?v=3">
 <link rel="stylesheet" href="viewer-enhancements.css?v=2">
 <link rel="stylesheet" href="viewer-pdf-cache.css?v=1">
 </head>
@@ -29,7 +29,7 @@
     <div class="tools"><a id="download" class="btn icon primary" href="#" title="Download full PDF">↓</a></div>
   </header>
   <section id="viewer" class="viewer">
-    <div id="scroll" class="scroll"><div id="stage" class="stage"><img id="plan" class="plan" alt="Selected plan sheet" draggable="false"><div id="highlights" class="highlights"></div></div></div>
+    <div id="scroll" class="scroll"><div id="stage" class="stage"><img id="plan" class="plan" alt="Selected plan sheet" draggable="false"><div id="highlights" class="highlights"></div><div id="sheetLinks" class="sheetLinks" aria-label="Linked drawing references"></div></div></div>
     <div id="loading" class="loading"><div class="loadingBox"><div class="spinner"></div><p id="loadingText">Loading project…</p></div></div>
     <div id="error" class="error"><div class="errorBox"><p id="errorText">This plan sheet could not be loaded.</p><button id="retry" class="btn text primary" style="margin-top:12px">Retry</button></div></div>
   </section>
@@ -41,11 +41,12 @@
 <div id="toast" class="toast"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js"></script>
-<script src="viewer-base.js?v=2"></script>
+<script src="viewer-base.js?v=3"></script>
 <script src="viewer-index.js?v=4"></script>
 <script src="viewer-ui.js?v=2"></script>
 <script src="viewer-pdf-cache.js?v=1"></script>
 <script src="viewer-enhancements.js?v=2"></script>
+<script src="viewer-sheet-links.js?v=1"></script>
 <script>(()=>{let tries=0;const timer=setInterval(()=>{tries++;if(typeof manifest!=='undefined'&&manifest){if(!manifest.sourcePdf){const button=document.getElementById('download');if(button)button.style.display='none';}clearInterval(timer);}else if(tries>100)clearInterval(timer);},50);})();</script>
 </body>
 </html>
