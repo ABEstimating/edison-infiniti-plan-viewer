@@ -1,7 +1,7 @@
 'use strict';
 if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>r.unregister())).catch(()=>{});}
 const $=id=>document.getElementById(id),app=$('app'),scroll=$('scroll'),stage=$('stage'),plan=$('plan'),highlightLayer=$('highlights'),sheetLinkLayer=$('sheetLinks');
-const params=new URLSearchParams(location.search);const isMobile=params.get('mobile')==='1'||matchMedia('(max-width:760px)').matches||/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+const params=new URLSearchParams(location.search);const isMobile=params.get('mobile')==='1'||matchMedia('(max-width:760px)').matches||/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);document.documentElement.classList.toggle('mobile-device',isMobile);
 let registry=[],projectEntry=null,manifest=null,manifestUrl=null,sheets=[],projectId=params.get('project')||'',page=1,rotation=0,scale=1,mode='page',naturalW=2400,naturalH=1600,loadToken=0,dragging=false,sx=0,sy=0,sl=0,st=0,toastTimer,activeSearch='';
 let pageTexts=[],pageWords=[],indexReady=false,indexing=false,indexedPages=0,preparedIndex=false,ocrDone=new Set(),ocrScanning=false,ocrWorker=null,ocrFailed=false;const imageCache=new Map();
 let touchMode='',touchStartX=0,touchStartY=0,touchScrollLeft=0,touchScrollTop=0,pinchStartDistance=0,pinchStartScale=1,pinchContentX=0,pinchContentY=0,touchMoved=false,lastTap=0;
