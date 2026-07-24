@@ -1,4 +1,13 @@
 (() => {
+  const style = document.createElement('style');
+  style.textContent = `
+    .sheetLinks{position:absolute;left:0;top:0;display:block;max-width:none;transform-origin:0 0;z-index:6;pointer-events:none}
+    .sheetLink{position:absolute;display:block;pointer-events:auto;cursor:pointer;border:1px solid rgba(37,99,235,.28);border-radius:3px;background:rgba(37,99,235,.055);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);outline:none}
+    .sheetLink:hover,.sheetLink:focus-visible{border-color:rgba(37,99,235,.95);background:rgba(37,99,235,.2);box-shadow:0 0 0 2px rgba(37,99,235,.24)}
+    @media(max-width:760px){.sheetLink{border-color:rgba(37,99,235,.38);background:rgba(37,99,235,.085)}}
+  `;
+  document.head.appendChild(style);
+
   const linkCache = new Map();
   let aliasSignature = '';
   let aliasMap = new Map();
@@ -161,20 +170,24 @@
       if (!target) continue;
       const padX = Math.min(0.006, Math.max(0.0015, link.w * 0.28));
       const padY = Math.min(0.006, Math.max(0.0015, link.h * 0.35));
+      const left = Math.max(0, link.x - padX);
+      const top = Math.max(0, link.y - padY);
       const anchor = document.createElement('a');
       anchor.className = 'sheetLink';
       anchor.href = linkedSheetUrl(link.targetPage);
       anchor.target = '_blank';
       anchor.rel = 'noopener';
-      anchor.style.left = `${Math.max(0, link.x - padX) * 100}%`;
-      anchor.style.top = `${Math.max(0, link.y - padY) * 100}%`;
-      anchor.style.width = `${Math.min(1 - Math.max(0, link.x - padX), link.w + padX * 2) * 100}%`;
-      anchor.style.height = `${Math.min(1 - Math.max(0, link.y - padY), link.h + padY * 2) * 100}%`;
+      anchor.style.left = `${left * 100}%`;
+      anchor.style.top = `${top * 100}%`;
+      anchor.style.width = `${Math.min(1 - left, link.w + padX * 2) * 100}%`;
+      anchor.style.height = `${Math.min(1 - top, link.h + padY * 2) * 100}%`;
       const label = `${sheetNumber(target)} - ${sheetTitle(target)}`;
       anchor.title = `Open ${label} in a new tab`;
       anchor.setAttribute('aria-label', `Open ${label} in a new tab`);
       anchor.addEventListener('mousedown', event => event.stopPropagation());
+      anchor.addEventListener('pointerdown', event => event.stopPropagation());
       anchor.addEventListener('touchstart', event => event.stopPropagation(), { passive: true });
+      anchor.addEventListener('touchend', event => event.stopPropagation(), { passive: true });
       anchor.addEventListener('click', event => event.stopPropagation());
       sheetLinkLayer.appendChild(anchor);
     }
@@ -206,4 +219,14 @@
     renderSheetLinks();
     return result;
   };
+
+  let attempts = 0;
+  const initialize = setInterval(() => {
+    attempts++;
+    if (Array.isArray(sheets) && sheets.length) {
+      transformImage();
+      renderSheetLinks();
+      if (pageWords[page - 1]?.length || attempts > 100) clearInterval(initialize);
+    } else if (attempts > 100) clearInterval(initialize);
+  }, 100);
 })();
