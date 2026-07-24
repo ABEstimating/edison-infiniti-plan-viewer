@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1220">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>AB Plan Viewer Admin</title>
+<link rel="stylesheet" href="admin.css?v=1">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../index.html">
+    <span class="brandMark"><img src="../ab-logo-white.svg?v=1" alt="AutoBuilders"></span>
+    <span><strong>AB Plan Viewer</strong><small>Project Administration</small></span>
+  </a>
+  <div class="topActions"><a class="topLink" href="../index.html">Open viewer</a><button id="logoutBtn" class="topLink buttonLink" hidden>Sign out</button></div>
+</header>
+
+<main class="shell">
+  <section id="setupPanel" class="notice danger" hidden>
+    <h1>One-time Cloudflare setup required</h1>
+    <p id="setupMessage"></p>
+  </section>
+
+  <section id="loginPanel" class="authCard">
+    <div>
+      <p class="eyebrow">SECURE ADMIN</p>
+      <h1>Sign in</h1>
+      <p>Use the administrator password stored in Cloudflare Pages.</p>
+    </div>
+    <form id="loginForm" class="loginForm">
+      <label>Admin password<input id="password" type="password" autocomplete="current-password" required></label>
+      <button class="primary" type="submit">Sign in</button>
+    </form>
+    <p id="loginError" class="formError" hidden></p>
+  </section>
+
+  <div id="adminApp" hidden>
+    <section class="hero">
+      <div><p class="eyebrow">PROJECT PACKAGE UPLOADER</p><h1>Create and publish a project</h1><p>Upload a prepared AB Plan Viewer ZIP or extracted project folder. The site creates the R2 project path, validates every referenced file, and publishes the project without another GitHub edit.</p></div>
+      <div class="statusPill"><span class="statusDot"></span>R2 connected</div>
+    </section>
+
+    <section class="panel uploadPanel">
+      <div class="panelHead"><div><h2>1. Select project package</h2><p>The package must contain one root-level <code>project-*.json</code> manifest.</p></div></div>
+      <div class="formGrid">
+        <label>Project folder name / slug<input id="slug" type="text" placeholder="glenn-cdjr" pattern="[a-z0-9]+(?:-[a-z0-9]+)*" autocomplete="off"><small>Automatically filled from the package manifest.</small></label>
+        <div class="pickerGroup">
+          <label class="filePicker"><input id="zipInput" type="file" accept=".zip,application/zip"><span><strong>Select prepared ZIP</strong><small>Recommended for packages created by ChatGPT</small></span></label>
+          <label class="filePicker"><input id="folderInput" type="file" webkitdirectory directory multiple><span><strong>Select extracted folder</strong><small>Use this if the ZIP is very large</small></span></label>
+        </div>
+      </div>
+      <div id="packageCard" class="packageCard" hidden>
+        <div><span class="packageIcon">ZIP</span></div>
+        <div class="packageInfo"><strong id="packageName"></strong><span id="packageMeta"></span><span id="manifestMeta"></span></div>
+        <button id="clearPackage" class="secondary small" type="button">Clear</button>
+      </div>
+      <div class="actionRow"><button id="uploadBtn" class="primary" type="button" disabled>Upload and validate</button><span id="uploadHint">Choose a ZIP or folder to begin.</span></div>
+    </section>
+
+    <section id="progressPanel" class="panel" hidden>
+      <div class="panelHead"><div><h2>2. Uploading to R2</h2><p id="progressText">Preparing files…</p></div><strong id="progressPercent">0%</strong></div>
+      <div class="progressTrack"><div id="progressBar"></div></div>
+      <div class="progressStats"><span id="progressFiles">0 / 0 files</span><span id="progressBytes">0 B / 0 B</span></div>
+      <div id="fileProgress" class="fileProgress"></div>
+    </section>
+
+    <section id="validationPanel" class="panel" hidden>
+      <div class="panelHead"><div><h2>3. Package validation</h2><p id="validationSummary"></p></div><span id="validationBadge" class="badge"></span></div>
+      <div id="validationDetails" class="validationDetails"></div>
+      <div class="actionRow"><button id="publishBtn" class="primary" type="button" disabled>Publish project</button><a id="openPublished" class="secondary" href="#" hidden>Open project</a></div>
+    </section>
+
+    <section class="panel">
+      <div class="panelHead"><div><h2>Published projects</h2><p>Projects appear here from the live registry.</p></div><button id="refreshProjects" class="secondary small" type="button">Refresh</button></div>
+      <div id="projectList" class="projectList"><div class="emptyState">Loading projects…</div></div>
+    </section>
+  </div>
+</main>
+
+<div id="toast" class="toast" role="status"></div>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<script src="admin.js?v=1"></script>
+</body>
+</html>
