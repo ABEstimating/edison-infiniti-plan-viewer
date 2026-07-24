@@ -86,11 +86,20 @@
 
   const originalZoomAt = zoomAt;
   zoomAt = function enhancedZoomAt(mult, clientX, clientY) {
-    if (!isMobile && mult > 1 && !app.classList.contains('sidebarCollapsed')) {
+    const wasCollapsed = !isMobile && app.classList.contains('sidebarCollapsed');
+
+    if (!isMobile && mult > 1 && !wasCollapsed) {
       setDesktopSidebarCollapsed(true);
       requestAnimationFrame(() => originalZoomAt(mult, clientX, clientY));
       return;
     }
-    return originalZoomAt(mult, clientX, clientY);
+
+    const result = originalZoomAt(mult, clientX, clientY);
+
+    if (!isMobile && mult < 1 && wasCollapsed) {
+      requestAnimationFrame(() => setDesktopSidebarCollapsed(false));
+    }
+
+    return result;
   };
 })();
