@@ -210,21 +210,29 @@
     if (!info || !sourcePath(info.source)) return false;
 
     const serial = ++renderSerial;
-    const displayedWidth = Math.max(1, naturalW * scale);
-    const displayedHeight = Math.max(1, naturalH * scale);
-    const deviceRatio = Math.min(2.25, Math.max(1, window.devicePixelRatio || 1));
-    const requestedWidth = Math.max(900, displayedWidth * deviceRatio * 1.15);
-    const requestedHeight = Math.max(900, displayedHeight * deviceRatio * 1.15);
-
-    if (!force && pdfCanvas.dataset.page === String(index + 1)) {
-      const renderedWidth = Number(pdfCanvas.dataset.renderedWidth) || 0;
-      if (renderedWidth >= requestedWidth * 0.9) return true;
-    }
 
     try {
       const documentProxy = await getPdfDocument(info.source);
       const pageProxy = await documentProxy.getPage(info.pageNumber);
       const baseViewport = pageProxy.getViewport({ scale: 1 });
+
+      const previewFailed = $('error').style.display === 'grid' || !(plan.complete && plan.naturalWidth);
+      if (previewFailed) {
+        naturalW = 1600;
+        naturalH = Math.max(1, Math.round(1600 * baseViewport.height / baseViewport.width));
+        originalFit(mode === 'custom' ? 'page' : mode);
+      }
+
+      const displayedWidth = Math.max(1, naturalW * scale);
+      const displayedHeight = Math.max(1, naturalH * scale);
+      const deviceRatio = Math.min(2.25, Math.max(1, window.devicePixelRatio || 1));
+      const requestedWidth = Math.max(900, displayedWidth * deviceRatio * 1.15);
+      const requestedHeight = Math.max(900, displayedHeight * deviceRatio * 1.15);
+
+      if (!force && pdfCanvas.dataset.page === String(index + 1)) {
+        const renderedWidth = Number(pdfCanvas.dataset.renderedWidth) || 0;
+        if (renderedWidth >= requestedWidth * 0.9) return true;
+      }
       const maxDimension = 8192;
       const maxPixels = 36000000;
       let renderScale = Math.max(requestedWidth / baseViewport.width, requestedHeight / baseViewport.height);
@@ -252,6 +260,7 @@
       syncPdfCanvas();
       pdfCanvas.classList.add('ready');
       plan.classList.add('previewUnderPdf');
+      ready();
       return true;
     } catch (error) {
       console.warn(`Sharp PDF render unavailable for sheet ${index + 1}`, error);
