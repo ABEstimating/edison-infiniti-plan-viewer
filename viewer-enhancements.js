@@ -1,6 +1,7 @@
 (() => {
   const collapsedGroups = new Set();
   let groupsInitialized = false;
+  let mobileActiveDiscipline = '';
 
   function initializeGroups() {
     if (groupsInitialized || !Array.isArray(sheets) || !sheets.length) return;
@@ -23,13 +24,98 @@
     return button;
   }
 
-  renderSheets = function enhancedRenderSheets() {
-    const q = $('search').value.trim();
-    if (q) {
-      renderSearch();
-      return;
+  function majorForSheet(sheet) {
+    if (typeof window.abMajorDiscipline === 'function') return window.abMajorDiscipline(sheet);
+    return sheetGroup(sheet) || 'Plans';
+  }
+
+  function setMobileDisciplineFocus(active) {
+    const sidebar = $('sidebar');
+    if (!sidebar) return;
+    sidebar.classList.toggle('mobileDisciplineFocus', Boolean(active));
+  }
+
+  function buildMobileDisciplines() {
+    const groups = [];
+    const byDiscipline = new Map();
+    sheets.forEach((sheet, index) => {
+      const discipline = majorForSheet(sheet);
+      if (!byDiscipline.has(discipline)) {
+        byDiscipline.set(discipline, []);
+        groups.push(discipline);
+      }
+      byDiscipline.get(discipline).push({ sheet, index });
+    });
+    return { groups, byDiscipline };
+  }
+
+  function renderMobileDisciplineIndex(groups, byDiscipline) {
+    mobileActiveDiscipline = '';
+    setMobileDisciplineFocus(false);
+    const list = $('sheetList');
+    list.innerHTML = '';
+
+    const currentDiscipline = majorForSheet(currentSheet());
+    const heading = document.createElement('div');
+    heading.className = 'mobileDisciplineIntro';
+    heading.innerHTML = '<strong>Plan disciplines</strong><span>Select a discipline to view its sheets.</span>';
+    list.appendChild(heading);
+
+    for (const discipline of groups) {
+      const entries = byDiscipline.get(discipline) || [];
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = `mobileDisciplineButton${discipline === currentDiscipline ? ' current' : ''}`;
+      button.innerHTML = `<span><strong>${esc(discipline)}</strong><small>${entries.length} sheet${entries.length === 1 ? '' : 's'}</small></span><span class="mobileDisciplineArrow">›</span>`;
+      button.onclick = () => {
+        mobileActiveDiscipline = discipline;
+        renderSheets();
+        requestAnimationFrame(() => { list.scrollTop = 0; });
+      };
+      list.appendChild(button);
+    }
+  }
+
+  function renderMobileDisciplineDetail(discipline, entries) {
+    setMobileDisciplineFocus(true);
+    const list = $('sheetList');
+    list.innerHTML = '';
+
+    const header = document.createElement('div');
+    header.className = 'mobileDisciplineHeader';
+    header.innerHTML = `<button type="button" class="mobileDisciplineBack" aria-label="Back to all disciplines">‹</button><span><strong>${esc(discipline)}</strong><small>${entries.length} sheet${entries.length === 1 ? '' : 's'}</small></span>`;
+    header.querySelector('button').onclick = () => {
+      mobileActiveDiscipline = '';
+      renderSheets();
+      requestAnimationFrame(() => { list.scrollTop = 0; });
+    };
+    list.appendChild(header);
+
+    let lastSubsection = '';
+    for (const { sheet, index } of entries) {
+      const subsection = sheetGroup(sheet) || discipline;
+      if (subsection !== lastSubsection) {
+        const sub = document.createElement('div');
+        sub.className = 'mobileSubsection';
+        sub.textContent = subsection;
+        list.appendChild(sub);
+        lastSubsection = subsection;
+      }
+
+      const button = document.createElement('button');
+      button.className = `sheet${index + 1 === page ? ' active' : ''}`;
+      button.innerHTML = `<span class="num">${esc(sheetNumber(sheet))}</span><span class="sheetName">${esc(sheetNumber(sheet))} - ${esc(sheetTitle(sheet))}</span>`;
+      button.onclick = () => {
+        activeSearch = '';
+        go(index + 1);
+      };
+      list.appendChild(button);
     }
 
+    list.querySelector('.active')?.scrollIntoView({ block: 'nearest' });
+  }
+
+  function renderDesktopGroups() {
     initializeGroups();
     const list = $('sheetList');
     list.innerHTML = '';
@@ -61,9 +147,28 @@
         list.appendChild(button);
       }
     }
+  }
+
+  renderSheets = function enhancedRenderSheets() {
+    const q = $('search').value.trim();
+    if (q) {
+      if (isMobile) setMobileDisciplineFocus(false);
+      renderSearch();
+      return;
+    }
+
+    if (isMobile) {
+      const { groups, byDiscipline } = buildMobileDisciplines();
+      if (mobileActiveDiscipline && byDiscipline.has(mobileActiveDiscipline)) {
+        renderMobileDisciplineDetail(mobileActiveDiscipline, byDiscipline.get(mobileActiveDiscipline));
+      } else {
+        renderMobileDisciplineIndex(groups, byDiscipline);
+      }
+    } else {
+      renderDesktopGroups();
+    }
 
     $('count').textContent = `${sheets.length} sheet${sheets.length === 1 ? '' : 's'}`;
-    list.querySelector('.active')?.scrollIntoView({ block: 'nearest' });
   };
 
   const toolbar = document.querySelector('.toolbar');
