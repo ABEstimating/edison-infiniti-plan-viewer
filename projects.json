@@ -6,11 +6,12 @@
       "id": "edison-infiniti",
       "name": "Edison Infiniti",
       "address": "842 U.S. Route 1, Edison, NJ 08817",
-      "setName": "100% Set",
+      "setName": "100% Site Plan Set",
       "setDate": "2023-05-12",
       "sheetCount": 14,
-      "manifest": "project-edison-infiniti.json",
-      "mobileViewer": "mobile.html"
+      "manifest": "https://pub-cd8a9ca2b3f04a62b565932ead45d5d5.r2.dev/projects/edison-infiniti/project-edison-infiniti.json",
+      "mobileViewer": "mobile.html",
+      "storage": "cloudflare-r2"
     },
     {
       "id": "glenn-cdjr",
