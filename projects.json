@@ -15,10 +15,10 @@
     {
       "id": "glenn-cdjr",
       "name": "Glenn CDJR",
-      "address": "6424 KY-146, Crestwood, KY 40014",
-      "setName": "Addendum No. 1 + E1.01 Rev. 0",
+      "address": "6424 KY-146 / 6426 W Hwy 146, Crestwood, KY 40014",
+      "setName": "Addendum No. 1 + Civil + Building/MEP Sets",
       "setDate": "2026-07-10",
-      "sheetCount": 3,
+      "sheetCount": 101,
       "manifest": "project-glenn-cdjr.json",
       "mobileViewer": "mobile.html"
     }
