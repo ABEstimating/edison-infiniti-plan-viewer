@@ -1,0 +1,13 @@
+.majorGroup{position:sticky;top:0;z-index:4;margin:10px 2px 6px;padding:9px 10px;border-radius:8px;background:#172033;color:#fff;font-size:10.5px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;box-shadow:0 2px 8px rgba(15,23,42,.16)}
+.subgroup{margin:9px 10px 4px;padding:3px 0 3px 8px;border-left:3px solid var(--accent);color:#526075;font-size:9.5px;letter-spacing:.06em}
+html.mobile-device .list{min-height:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;touch-action:pan-y;padding-right:max(10px,env(safe-area-inset-right))}
+html.mobile-device .sheet,html.mobile-device .result{min-width:0}
+html.mobile-device .sheetName,html.mobile-device .resultTitle{min-width:0;overflow:hidden;text-overflow:ellipsis}
+@media(orientation:landscape){
+  html.mobile-device .majorGroup{top:0}
+  html.mobile-device .sidebar{grid-template-rows:auto auto minmax(0,1fr) auto;overflow:hidden;box-sizing:border-box}
+  html.mobile-device .sidebar>div:nth-child(2){min-width:0;overflow:visible}
+  html.mobile-device .setBox,html.mobile-device .search,html.mobile-device .viewBox{width:100%;min-width:0;box-sizing:border-box}
+  html.mobile-device .projectSelect,html.mobile-device .viewSelect,html.mobile-device .search input{width:100%;max-width:100%;min-width:0}
+  html.mobile-device .sideFoot{min-width:0;overflow:hidden}
+}
