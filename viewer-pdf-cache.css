@@ -5,5 +5,24 @@
 .pdfCacheBadge{height:32px;max-width:190px;flex:0 0 auto;padding:0 10px;border:1px solid #d7dee9;border-radius:8px;background:#f7f9fc;color:#526075;font-size:10.5px;font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}
 .pdfCacheBadge[data-state="ready"]{border-color:#a6e5c7;background:#ecfdf3;color:#067647}
 .pdfCacheBadge[data-state="error"]{border-color:#f4c7c7;background:#fff5f5;color:#b42318}
+.pdfLoadStatus{position:absolute;top:8px;right:8px;z-index:26;width:154px;padding:8px 9px 7px;border:1px solid rgba(255,255,255,.2);border-radius:9px;background:rgba(11,18,32,.9);color:#fff;box-shadow:0 8px 24px rgba(0,0,0,.24);backdrop-filter:blur(8px);cursor:pointer;pointer-events:auto}
+.pdfLoadStatus[hidden]{display:none}
+.pdfStatusRow{display:flex;align-items:center;gap:7px;min-width:0}
+.pdfStatusSpinner{width:13px;height:13px;flex:0 0 auto;border:2px solid rgba(255,255,255,.28);border-top-color:#fff;border-radius:50%;animation:pdfSpin .75s linear infinite}
+.pdfStatusText{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10px;font-weight:800;letter-spacing:.01em}
+.pdfStatusTrack{height:3px;margin-top:6px;overflow:hidden;border-radius:999px;background:rgba(255,255,255,.22)}
+.pdfStatusBar{display:block;height:100%;width:0;border-radius:inherit;background:#60a5fa;transition:width .16s ease}
+.pdfLoadStatus.indeterminate .pdfStatusBar{animation:pdfBar 1.05s ease-in-out infinite}
+.pdfLoadStatus[data-state="ready"]{background:rgba(6,118,71,.92)}
+.pdfLoadStatus[data-state="ready"] .pdfStatusSpinner{border-color:rgba(255,255,255,.3);border-top-color:#fff;animation:none}
+.pdfLoadStatus[data-state="ready"] .pdfStatusBar{background:#86efac}
+.pdfLoadStatus[data-state="error"]{background:rgba(180,35,24,.94)}
+.pdfLoadStatus[data-state="error"] .pdfStatusSpinner{animation:none;border-color:rgba(255,255,255,.45)}
+.pdfLoadStatus[data-state="error"] .pdfStatusBar{background:#fecaca}
+@keyframes pdfSpin{to{transform:rotate(360deg)}}
+@keyframes pdfBar{0%{transform:translateX(-120%)}50%{transform:translateX(85%)}100%{transform:translateX(260%)}}
 @media(max-width:1080px){.pdfCacheBadge{max-width:125px}}
 @media(max-width:760px){.pdfCacheBadge{display:none}.pdfCanvas{transition:none}}
+html.mobile-device .pdfLoadStatus{top:calc(var(--mobileTop) + env(safe-area-inset-top) + 7px);right:max(7px,env(safe-area-inset-right));width:144px;padding:7px 8px 6px}
+html.mobile-device .hiddenBars .pdfLoadStatus{top:max(7px,env(safe-area-inset-top))}
+@media(orientation:landscape){html.mobile-device .pdfLoadStatus{top:calc(var(--mobileTop) + 6px)}html.mobile-device .hiddenBars .pdfLoadStatus{top:7px}}
