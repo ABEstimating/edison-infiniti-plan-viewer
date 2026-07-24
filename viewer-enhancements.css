@@ -5,6 +5,13 @@
   .app.sidebarCollapsed .sidebar{transform:translateX(-100%);opacity:0;pointer-events:none}
   .desktopSidebarToggle{display:none!important;flex:0 0 auto;font-size:20px;font-weight:800;letter-spacing:2px}
   .app.sidebarCollapsed .desktopSidebarToggle{display:inline-flex!important}
+
+  /* Keep every edge reachable after zooming. Flex centering placed oversized
+     drawings partly outside the scrollable area, making the left/right edges
+     impossible to reach. Block layout centers only while the sheet is smaller
+     than the viewport and starts at the left padding once it becomes wider. */
+  .scroll{display:block}
+  .stage{margin:0 auto}
 }
 .groupToggle{width:100%;min-height:34px;margin:7px 0 3px;padding:7px 12px;border:0;border-radius:7px;background:transparent;color:#8993a5;display:flex;align-items:center;gap:7px;text-align:left;font-size:10px;font-weight:850;text-transform:uppercase;letter-spacing:.08em}
 .groupToggle:hover{background:#f2f5f9;color:#526075}
