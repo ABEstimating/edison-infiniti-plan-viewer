@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "packageType": "abplans",
-  "packageVersion": "4.0.0",
+  "packageVersion": "4.0.1",
   "projectId": "glenn-cdjr",
   "projectName": "Glenn CDJR",
   "address": "6424 KY-146 / 6426 W Hwy 146, Crestwood, KY 40014",
@@ -34,7 +34,7 @@
       "discipline": "Addenda",
       "mime": "image/png",
       "page": 1,
-      "image": "glenn-full-assets-v4/001-ADD-1.png"
+      "image": "glenn-assets/001-ADD-1.png"
     },
     {
       "number": "1",
@@ -42,7 +42,7 @@
       "discipline": "Landscape",
       "mime": "image/png",
       "page": 2,
-      "image": "glenn-full-assets-v4/002-1.png"
+      "image": "glenn-assets/002-1.png"
     },
     {
       "number": "C0.1",
@@ -50,7 +50,7 @@
       "discipline": "Civil",
       "mime": "image/png",
       "page": 3,
-      "image": "glenn-full-assets-v4/003-C0.1.png"
+      "image": "glenn-assets/003-C0.1.png"
     },
     {
       "number": "C1.0",
@@ -58,7 +58,7 @@
       "discipline": "Civil",
       "mime": "image/png",
       "page": 4,
-      "image": "glenn-full-assets-v4/004-C1.0.png"
+      "image": "glenn-assets/004-C1.0.png"
     },
     {
       "number": "C2.0",
@@ -66,7 +66,7 @@
       "discipline": "Civil",
       "mime": "image/png",
       "page": 5,
-      "image": "glenn-full-assets-v4/005-C2.0.png"
+      "image": "glenn-assets/005-C2.0.png"
     },
     {
       "number": "C2.1",
@@ -74,7 +74,7 @@
       "discipline": "Civil",
       "mime": "image/png",
       "page": 6,
-      "image": "glenn-full-assets-v4/006-C2.1.png"
+      "image": "glenn-assets/006-C2.1.png"
     },
     {
       "number": "C2.2",
@@ -82,7 +82,7 @@
       "discipline": "Civil",
       "mime": "image/png",
       "page": 7,
-      "image": "glenn-full-assets-v4/007-C2.2.png"
+      "image": "glenn-assets/007-C2.2.png"
     },
     {
       "number": "C3.0",
@@ -90,7 +90,7 @@
       "discipline": "Civil",
       "mime": "image/png",
       "page": 8,
-      "image": "glenn-full-assets-v4/008-C3.0.png"
+      "image": "glenn-assets/008-C3.0.png"
     },
     {
       "number": "C3.1",
@@ -98,7 +98,7 @@
       "discipline": "Civil",
       "mime": "image/png",
       "page": 9,
-      "image": "glenn-full-assets-v4/009-C3.1.png"
+      "image": "glenn-assets/009-C3.1.png"
     },
     {
       "number": "C3.2",
@@ -106,7 +106,7 @@
       "discipline": "Civil",
       "mime": "image/png",
       "page": 10,
-      "image": "glenn-full-assets-v4/010-C3.2.png"
+      "image": "glenn-assets/010-C3.2.png"
     },
     {
       "number": "C4.0",
@@ -114,7 +114,7 @@
       "discipline": "Civil",
       "mime": "image/png",
       "page": 11,
-      "image": "glenn-full-assets-v4/011-C4.0.png"
+      "image": "glenn-assets/011-C4.0.png"
     },
     {
       "number": "C5.0",
@@ -122,7 +122,7 @@
       "discipline": "Civil",
       "mime": "image/png",
       "page": 12,
-      "image": "glenn-full-assets-v4/012-C5.0.png"
+      "image": "glenn-assets/012-C5.0.png"
     },
     {
       "number": "C6.0",
@@ -130,7 +130,7 @@
       "discipline": "Civil",
       "mime": "image/png",
       "page": 13,
-      "image": "glenn-full-assets-v4/013-C6.0.png"
+      "image": "glenn-assets/013-C6.0.png"
     },
     {
       "number": "C7.0",
@@ -138,7 +138,7 @@
       "discipline": "Civil",
       "mime": "image/png",
       "page": 14,
-      "image": "glenn-full-assets-v4/014-C7.0.png"
+      "image": "glenn-assets/014-C7.0.png"
     },
     {
       "number": "C7.1",
@@ -146,7 +146,7 @@
       "discipline": "Civil",
       "mime": "image/png",
       "page": 15,
-      "image": "glenn-full-assets-v4/015-C7.1.png"
+      "image": "glenn-assets/015-C7.1.png"
     },
     {
       "number": "C8.0",
@@ -154,7 +154,7 @@
       "discipline": "Civil",
       "mime": "image/png",
       "page": 16,
-      "image": "glenn-full-assets-v4/016-C8.0.png"
+      "image": "glenn-assets/016-C8.0.png"
     },
     {
       "number": "C8.1",
@@ -162,7 +162,7 @@
       "discipline": "Civil",
       "mime": "image/png",
       "page": 17,
-      "image": "glenn-full-assets-v4/017-C8.1.png"
+      "image": "glenn-assets/017-C8.1.png"
     },
     {
       "number": "T1.01",
@@ -170,7 +170,7 @@
       "discipline": "Title",
       "mime": "image/png",
       "page": 18,
-      "image": "glenn-full-assets-v4/018-T1.01.png"
+      "image": "glenn-assets/018-T1.01.png"
     },
     {
       "number": "F1.01",
@@ -178,7 +178,7 @@
       "discipline": "Foundation",
       "mime": "image/png",
       "page": 19,
-      "image": "glenn-full-assets-v4/019-F1.01.png"
+      "image": "glenn-assets/019-F1.01.png"
     },
     {
       "number": "F1.02",
@@ -186,7 +186,7 @@
       "discipline": "Foundation",
       "mime": "image/png",
       "page": 20,
-      "image": "glenn-full-assets-v4/020-F1.02.png"
+      "image": "glenn-assets/020-F1.02.png"
     },
     {
       "number": "F1.03",
@@ -194,7 +194,7 @@
       "discipline": "Foundation",
       "mime": "image/png",
       "page": 21,
-      "image": "glenn-full-assets-v4/021-F1.03.png"
+      "image": "glenn-assets/021-F1.03.png"
     },
     {
       "number": "F1.04",
@@ -202,7 +202,7 @@
       "discipline": "Foundation",
       "mime": "image/png",
       "page": 22,
-      "image": "glenn-full-assets-v4/022-F1.04.png"
+      "image": "glenn-assets/022-F1.04.png"
     },
     {
       "number": "F2.01",
@@ -210,7 +210,7 @@
       "discipline": "Foundation",
       "mime": "image/png",
       "page": 23,
-      "image": "glenn-full-assets-v4/023-F2.01.png"
+      "image": "glenn-assets/023-F2.01.png"
     },
     {
       "number": "F2.02",
@@ -218,7 +218,7 @@
       "discipline": "Foundation",
       "mime": "image/png",
       "page": 24,
-      "image": "glenn-full-assets-v4/024-F2.02.png"
+      "image": "glenn-assets/024-F2.02.png"
     },
     {
       "number": "F2.03",
@@ -226,7 +226,7 @@
       "discipline": "Foundation",
       "mime": "image/png",
       "page": 25,
-      "image": "glenn-full-assets-v4/025-F2.03.png"
+      "image": "glenn-assets/025-F2.03.png"
     },
     {
       "number": "S1.01",
@@ -234,7 +234,7 @@
       "discipline": "Structural",
       "mime": "image/png",
       "page": 26,
-      "image": "glenn-full-assets-v4/026-S1.01.png"
+      "image": "glenn-assets/026-S1.01.png"
     },
     {
       "number": "S1.02",
@@ -242,7 +242,7 @@
       "discipline": "Structural",
       "mime": "image/png",
       "page": 27,
-      "image": "glenn-full-assets-v4/027-S1.02.png"
+      "image": "glenn-assets/027-S1.02.png"
     },
     {
       "number": "S2.01",
@@ -250,7 +250,7 @@
       "discipline": "Structural",
       "mime": "image/png",
       "page": 28,
-      "image": "glenn-full-assets-v4/028-S2.01.png"
+      "image": "glenn-assets/028-S2.01.png"
     },
     {
       "number": "LS1.01",
@@ -258,7 +258,7 @@
       "discipline": "Life Safety",
       "mime": "image/png",
       "page": 29,
-      "image": "glenn-full-assets-v4/029-LS1.01.png"
+      "image": "glenn-assets/029-LS1.01.png"
     },
     {
       "number": "LS1.02",
@@ -266,7 +266,7 @@
       "discipline": "Life Safety",
       "mime": "image/png",
       "page": 30,
-      "image": "glenn-full-assets-v4/030-LS1.02.png"
+      "image": "glenn-assets/030-LS1.02.png"
     },
     {
       "number": "LS1.03",
@@ -274,7 +274,7 @@
       "discipline": "Life Safety",
       "mime": "image/png",
       "page": 31,
-      "image": "glenn-full-assets-v4/031-LS1.03.png"
+      "image": "glenn-assets/031-LS1.03.png"
     },
     {
       "number": "A1.01",
@@ -282,7 +282,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 32,
-      "image": "glenn-full-assets-v4/032-A1.01.png"
+      "image": "glenn-assets/032-A1.01.png"
     },
     {
       "number": "A1.02",
@@ -290,7 +290,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 33,
-      "image": "glenn-full-assets-v4/033-A1.02.png"
+      "image": "glenn-assets/033-A1.02.png"
     },
     {
       "number": "A1.03",
@@ -298,7 +298,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 34,
-      "image": "glenn-full-assets-v4/034-A1.03.png"
+      "image": "glenn-assets/034-A1.03.png"
     },
     {
       "number": "A1.04",
@@ -306,7 +306,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 35,
-      "image": "glenn-full-assets-v4/035-A1.04.png"
+      "image": "glenn-assets/035-A1.04.png"
     },
     {
       "number": "A1.05",
@@ -314,7 +314,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 36,
-      "image": "glenn-full-assets-v4/036-A1.05.png"
+      "image": "glenn-assets/036-A1.05.png"
     },
     {
       "number": "A1.06",
@@ -322,7 +322,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 37,
-      "image": "glenn-full-assets-v4/037-A1.06.png"
+      "image": "glenn-assets/037-A1.06.png"
     },
     {
       "number": "A1.07",
@@ -330,7 +330,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 38,
-      "image": "glenn-full-assets-v4/038-A1.07.png"
+      "image": "glenn-assets/038-A1.07.png"
     },
     {
       "number": "A1.08",
@@ -338,7 +338,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 39,
-      "image": "glenn-full-assets-v4/039-A1.08.png"
+      "image": "glenn-assets/039-A1.08.png"
     },
     {
       "number": "A1.09",
@@ -346,7 +346,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 40,
-      "image": "glenn-full-assets-v4/040-A1.09.png"
+      "image": "glenn-assets/040-A1.09.png"
     },
     {
       "number": "A1.10",
@@ -354,7 +354,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 41,
-      "image": "glenn-full-assets-v4/041-A1.10.png"
+      "image": "glenn-assets/041-A1.10.png"
     },
     {
       "number": "A1.11",
@@ -362,7 +362,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 42,
-      "image": "glenn-full-assets-v4/042-A1.11.png"
+      "image": "glenn-assets/042-A1.11.png"
     },
     {
       "number": "A1.12",
@@ -370,7 +370,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 43,
-      "image": "glenn-full-assets-v4/043-A1.12.png"
+      "image": "glenn-assets/043-A1.12.png"
     },
     {
       "number": "A1.13",
@@ -378,7 +378,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 44,
-      "image": "glenn-full-assets-v4/044-A1.13.png"
+      "image": "glenn-assets/044-A1.13.png"
     },
     {
       "number": "A1.14",
@@ -386,7 +386,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 45,
-      "image": "glenn-full-assets-v4/045-A1.14.png"
+      "image": "glenn-assets/045-A1.14.png"
     },
     {
       "number": "A2.01",
@@ -394,7 +394,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 46,
-      "image": "glenn-full-assets-v4/046-A2.01.png"
+      "image": "glenn-assets/046-A2.01.png"
     },
     {
       "number": "A2.02",
@@ -402,7 +402,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 47,
-      "image": "glenn-full-assets-v4/047-A2.02.png"
+      "image": "glenn-assets/047-A2.02.png"
     },
     {
       "number": "A3.01",
@@ -410,7 +410,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 48,
-      "image": "glenn-full-assets-v4/048-A3.01.png"
+      "image": "glenn-assets/048-A3.01.png"
     },
     {
       "number": "A3.02",
@@ -418,7 +418,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 49,
-      "image": "glenn-full-assets-v4/049-A3.02.png"
+      "image": "glenn-assets/049-A3.02.png"
     },
     {
       "number": "A3.03",
@@ -426,7 +426,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 50,
-      "image": "glenn-full-assets-v4/050-A3.03.png"
+      "image": "glenn-assets/050-A3.03.png"
     },
     {
       "number": "A3.04",
@@ -434,7 +434,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 51,
-      "image": "glenn-full-assets-v4/051-A3.04.png"
+      "image": "glenn-assets/051-A3.04.png"
     },
     {
       "number": "A4.01",
@@ -442,7 +442,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 52,
-      "image": "glenn-full-assets-v4/052-A4.01.png"
+      "image": "glenn-assets/052-A4.01.png"
     },
     {
       "number": "A4.02",
@@ -450,7 +450,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 53,
-      "image": "glenn-full-assets-v4/053-A4.02.png"
+      "image": "glenn-assets/053-A4.02.png"
     },
     {
       "number": "A4.03",
@@ -458,7 +458,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 54,
-      "image": "glenn-full-assets-v4/054-A4.03.png"
+      "image": "glenn-assets/054-A4.03.png"
     },
     {
       "number": "A4.04",
@@ -466,7 +466,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 55,
-      "image": "glenn-full-assets-v4/055-A4.04.png"
+      "image": "glenn-assets/055-A4.04.png"
     },
     {
       "number": "A4.05",
@@ -474,7 +474,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 56,
-      "image": "glenn-full-assets-v4/056-A4.05.png"
+      "image": "glenn-assets/056-A4.05.png"
     },
     {
       "number": "A5.01",
@@ -482,7 +482,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 57,
-      "image": "glenn-full-assets-v4/057-A5.01.png"
+      "image": "glenn-assets/057-A5.01.png"
     },
     {
       "number": "A5.02",
@@ -490,7 +490,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 58,
-      "image": "glenn-full-assets-v4/058-A5.02.png"
+      "image": "glenn-assets/058-A5.02.png"
     },
     {
       "number": "A5.03",
@@ -498,7 +498,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 59,
-      "image": "glenn-full-assets-v4/059-A5.03.png"
+      "image": "glenn-assets/059-A5.03.png"
     },
     {
       "number": "A5.04",
@@ -506,7 +506,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 60,
-      "image": "glenn-full-assets-v4/060-A5.04.png"
+      "image": "glenn-assets/060-A5.04.png"
     },
     {
       "number": "A5.05",
@@ -514,7 +514,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 61,
-      "image": "glenn-full-assets-v4/061-A5.05.png"
+      "image": "glenn-assets/061-A5.05.png"
     },
     {
       "number": "A5.06",
@@ -522,7 +522,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 62,
-      "image": "glenn-full-assets-v4/062-A5.06.png"
+      "image": "glenn-assets/062-A5.06.png"
     },
     {
       "number": "A5.07",
@@ -530,7 +530,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 63,
-      "image": "glenn-full-assets-v4/063-A5.07.png"
+      "image": "glenn-assets/063-A5.07.png"
     },
     {
       "number": "A5.08",
@@ -538,7 +538,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 64,
-      "image": "glenn-full-assets-v4/064-A5.08.png"
+      "image": "glenn-assets/064-A5.08.png"
     },
     {
       "number": "A5.09",
@@ -546,7 +546,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 65,
-      "image": "glenn-full-assets-v4/065-A5.09.png"
+      "image": "glenn-assets/065-A5.09.png"
     },
     {
       "number": "A5.10",
@@ -554,7 +554,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 66,
-      "image": "glenn-full-assets-v4/066-A5.10.png"
+      "image": "glenn-assets/066-A5.10.png"
     },
     {
       "number": "A5.11",
@@ -562,7 +562,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 67,
-      "image": "glenn-full-assets-v4/067-A5.11.png"
+      "image": "glenn-assets/067-A5.11.png"
     },
     {
       "number": "A6.01",
@@ -570,7 +570,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 68,
-      "image": "glenn-full-assets-v4/068-A6.01.png"
+      "image": "glenn-assets/068-A6.01.png"
     },
     {
       "number": "A6.02",
@@ -578,7 +578,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 69,
-      "image": "glenn-full-assets-v4/069-A6.02.png"
+      "image": "glenn-assets/069-A6.02.png"
     },
     {
       "number": "A6.03",
@@ -586,7 +586,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 70,
-      "image": "glenn-full-assets-v4/070-A6.03.png"
+      "image": "glenn-assets/070-A6.03.png"
     },
     {
       "number": "A6.04",
@@ -594,7 +594,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 71,
-      "image": "glenn-full-assets-v4/071-A6.04.png"
+      "image": "glenn-assets/071-A6.04.png"
     },
     {
       "number": "A6.05",
@@ -602,7 +602,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 72,
-      "image": "glenn-full-assets-v4/072-A6.05.png"
+      "image": "glenn-assets/072-A6.05.png"
     },
     {
       "number": "A7.01",
@@ -610,7 +610,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 73,
-      "image": "glenn-full-assets-v4/073-A7.01.png"
+      "image": "glenn-assets/073-A7.01.png"
     },
     {
       "number": "A7.03",
@@ -618,7 +618,7 @@
       "discipline": "Architectural",
       "mime": "image/png",
       "page": 74,
-      "image": "glenn-full-assets-v4/074-A7.03.png"
+      "image": "glenn-assets/074-A7.03.png"
     },
     {
       "number": "EQ1.01",
@@ -626,7 +626,7 @@
       "discipline": "Equipment",
       "mime": "image/png",
       "page": 75,
-      "image": "glenn-full-assets-v4/075-EQ1.01.png"
+      "image": "glenn-assets/075-EQ1.01.png"
     },
     {
       "number": "EQ1.02",
@@ -634,7 +634,7 @@
       "discipline": "Equipment",
       "mime": "image/png",
       "page": 76,
-      "image": "glenn-full-assets-v4/076-EQ1.02.png"
+      "image": "glenn-assets/076-EQ1.02.png"
     },
     {
       "number": "EQ2.01",
@@ -642,7 +642,7 @@
       "discipline": "Equipment",
       "mime": "image/png",
       "page": 77,
-      "image": "glenn-full-assets-v4/077-EQ2.01.png"
+      "image": "glenn-assets/077-EQ2.01.png"
     },
     {
       "number": "M0.1",
@@ -650,7 +650,7 @@
       "discipline": "Mechanical",
       "mime": "image/png",
       "page": 78,
-      "image": "glenn-full-assets-v4/078-M0.1.png"
+      "image": "glenn-assets/078-M0.1.png"
     },
     {
       "number": "M1.1",
@@ -658,7 +658,7 @@
       "discipline": "Mechanical",
       "mime": "image/png",
       "page": 79,
-      "image": "glenn-full-assets-v4/079-M1.1.png"
+      "image": "glenn-assets/079-M1.1.png"
     },
     {
       "number": "M1.2",
@@ -666,7 +666,7 @@
       "discipline": "Mechanical",
       "mime": "image/png",
       "page": 80,
-      "image": "glenn-full-assets-v4/080-M1.2.png"
+      "image": "glenn-assets/080-M1.2.png"
     },
     {
       "number": "M6.1",
@@ -674,7 +674,7 @@
       "discipline": "Mechanical",
       "mime": "image/png",
       "page": 81,
-      "image": "glenn-full-assets-v4/081-M6.1.png"
+      "image": "glenn-assets/081-M6.1.png"
     },
     {
       "number": "ES1.0",
@@ -682,7 +682,7 @@
       "discipline": "Electrical",
       "mime": "image/png",
       "page": 82,
-      "image": "glenn-full-assets-v4/082-ES1.0.png"
+      "image": "glenn-assets/082-ES1.0.png"
     },
     {
       "number": "E1.01",
@@ -690,7 +690,7 @@
       "discipline": "Electrical",
       "mime": "image/png",
       "page": 83,
-      "image": "glenn-full-assets-v4/083-E1.01.png"
+      "image": "glenn-assets/083-E1.01.png"
     },
     {
       "number": "E1.02",
@@ -698,7 +698,7 @@
       "discipline": "Electrical",
       "mime": "image/png",
       "page": 84,
-      "image": "glenn-full-assets-v4/084-E1.02.png"
+      "image": "glenn-assets/084-E1.02.png"
     },
     {
       "number": "E1.03",
@@ -706,7 +706,7 @@
       "discipline": "Electrical",
       "mime": "image/png",
       "page": 85,
-      "image": "glenn-full-assets-v4/085-E1.03.png"
+      "image": "glenn-assets/085-E1.03.png"
     },
     {
       "number": "E1.04",
@@ -714,7 +714,7 @@
       "discipline": "Electrical",
       "mime": "image/png",
       "page": 86,
-      "image": "glenn-full-assets-v4/086-E1.04.png"
+      "image": "glenn-assets/086-E1.04.png"
     },
     {
       "number": "E1.05",
@@ -722,7 +722,7 @@
       "discipline": "Electrical",
       "mime": "image/png",
       "page": 87,
-      "image": "glenn-full-assets-v4/087-E1.05.png"
+      "image": "glenn-assets/087-E1.05.png"
     },
     {
       "number": "E1.06",
@@ -730,7 +730,7 @@
       "discipline": "Electrical",
       "mime": "image/png",
       "page": 88,
-      "image": "glenn-full-assets-v4/088-E1.06.png"
+      "image": "glenn-assets/088-E1.06.png"
     },
     {
       "number": "P0.1",
@@ -738,7 +738,7 @@
       "discipline": "Plumbing",
       "mime": "image/png",
       "page": 89,
-      "image": "glenn-full-assets-v4/089-P0.1.png"
+      "image": "glenn-assets/089-P0.1.png"
     },
     {
       "number": "P0.2",
@@ -746,7 +746,7 @@
       "discipline": "Plumbing",
       "mime": "image/png",
       "page": 90,
-      "image": "glenn-full-assets-v4/090-P0.2.png"
+      "image": "glenn-assets/090-P0.2.png"
     },
     {
       "number": "P1.0",
@@ -754,7 +754,7 @@
       "discipline": "Plumbing",
       "mime": "image/png",
       "page": 91,
-      "image": "glenn-full-assets-v4/091-P1.0.png"
+      "image": "glenn-assets/091-P1.0.png"
     },
     {
       "number": "P1.1",
@@ -762,7 +762,7 @@
       "discipline": "Plumbing",
       "mime": "image/png",
       "page": 92,
-      "image": "glenn-full-assets-v4/092-P1.1.png"
+      "image": "glenn-assets/092-P1.1.png"
     },
     {
       "number": "P1.2",
@@ -770,7 +770,7 @@
       "discipline": "Plumbing",
       "mime": "image/png",
       "page": 93,
-      "image": "glenn-full-assets-v4/093-P1.2.png"
+      "image": "glenn-assets/093-P1.2.png"
     },
     {
       "number": "P1.3",
@@ -778,7 +778,7 @@
       "discipline": "Plumbing",
       "mime": "image/png",
       "page": 94,
-      "image": "glenn-full-assets-v4/094-P1.3.png"
+      "image": "glenn-assets/094-P1.3.png"
     },
     {
       "number": "P1.4",
@@ -786,7 +786,7 @@
       "discipline": "Plumbing",
       "mime": "image/png",
       "page": 95,
-      "image": "glenn-full-assets-v4/095-P1.4.png"
+      "image": "glenn-assets/095-P1.4.png"
     },
     {
       "number": "P1.5",
@@ -794,7 +794,7 @@
       "discipline": "Plumbing",
       "mime": "image/png",
       "page": 96,
-      "image": "glenn-full-assets-v4/096-P1.5.png"
+      "image": "glenn-assets/096-P1.5.png"
     },
     {
       "number": "P1.6",
@@ -802,7 +802,7 @@
       "discipline": "Plumbing",
       "mime": "image/png",
       "page": 97,
-      "image": "glenn-full-assets-v4/097-P1.6.png"
+      "image": "glenn-assets/097-P1.6.png"
     },
     {
       "number": "P1.7",
@@ -810,7 +810,7 @@
       "discipline": "Plumbing",
       "mime": "image/png",
       "page": 98,
-      "image": "glenn-full-assets-v4/098-P1.7.png"
+      "image": "glenn-assets/098-P1.7.png"
     },
     {
       "number": "SP1.01",
@@ -818,7 +818,7 @@
       "discipline": "Specifications",
       "mime": "image/png",
       "page": 99,
-      "image": "glenn-full-assets-v4/099-SP1.01.png"
+      "image": "glenn-assets/099-SP1.01.png"
     },
     {
       "number": "SP1.02",
@@ -826,7 +826,7 @@
       "discipline": "Specifications",
       "mime": "image/png",
       "page": 100,
-      "image": "glenn-full-assets-v4/100-SP1.02.png"
+      "image": "glenn-assets/100-SP1.02.png"
     },
     {
       "number": "SP1.03",
@@ -834,7 +834,7 @@
       "discipline": "Specifications",
       "mime": "image/png",
       "page": 101,
-      "image": "glenn-full-assets-v4/101-SP1.03.png"
+      "image": "glenn-assets/101-SP1.03.png"
     }
   ],
   "searchIndexGzip": "glenn-search-index-v4.json.gz"
