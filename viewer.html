@@ -6,7 +6,8 @@
 <meta name="theme-color" content="#0b1220">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <title>AB Plan Viewer</title>
-<link rel="stylesheet" href="viewer.css?v=1">
+<link rel="stylesheet" href="viewer.css?v=2">
+<link rel="stylesheet" href="viewer-enhancements.css?v=1">
 </head>
 <body>
 <div id="app" class="app">
@@ -39,9 +40,10 @@
 <div id="toast" class="toast"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js"></script>
-<script src="viewer-base.js?v=1"></script>
+<script src="viewer-base.js?v=2"></script>
 <script src="viewer-index.js?v=4"></script>
-<script src="viewer-ui.js?v=1"></script>
+<script src="viewer-ui.js?v=2"></script>
+<script src="viewer-enhancements.js?v=1"></script>
 <script>(()=>{let tries=0;const timer=setInterval(()=>{tries++;if(typeof manifest!=='undefined'&&manifest){if(!manifest.sourcePdf){const button=document.getElementById('download');if(button)button.style.display='none';}clearInterval(timer);}else if(tries>100)clearInterval(timer);},50);})();</script>
 </body>
 </html>
