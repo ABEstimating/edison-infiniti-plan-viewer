@@ -1,0 +1,9 @@
+.pdfCanvas{position:absolute;left:0;top:0;display:block;max-width:none;transform-origin:0 0;z-index:2;pointer-events:none;opacity:0;transition:opacity .12s ease;background:#fff}
+.pdfCanvas.ready{opacity:1}
+.plan{z-index:1}
+.plan.previewUnderPdf{opacity:1}
+.pdfCacheBadge{height:32px;max-width:190px;flex:0 0 auto;padding:0 10px;border:1px solid #d7dee9;border-radius:8px;background:#f7f9fc;color:#526075;font-size:10.5px;font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}
+.pdfCacheBadge[data-state="ready"]{border-color:#a6e5c7;background:#ecfdf3;color:#067647}
+.pdfCacheBadge[data-state="error"]{border-color:#f4c7c7;background:#fff5f5;color:#b42318}
+@media(max-width:1080px){.pdfCacheBadge{max-width:125px}}
+@media(max-width:760px){.pdfCacheBadge{display:none}.pdfCanvas{transition:none}}
