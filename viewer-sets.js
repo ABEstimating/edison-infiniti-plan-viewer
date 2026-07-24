@@ -176,12 +176,32 @@
     return url.href;
   }
 
+  function currentEquivalentSetIds() {
+    const activeViewId = String(manifest.activeViewId || 'current');
+    const ids = new Set([activeViewId]);
+    if (activeViewId !== 'current') return ids;
+
+    const receivedSets = Array.isArray(manifest.receivedSets) ? manifest.receivedSets : [];
+    if (manifest.currentSetId) ids.add(String(manifest.currentSetId));
+
+    const currentName = String(manifest.currentSetName || manifest.setName || '').trim().toLowerCase();
+    for (const set of receivedSets) {
+      if (!set?.id) continue;
+      const setName = String(set.name || '').trim().toLowerCase();
+      if (currentName && setName === currentName) ids.add(String(set.id));
+    }
+
+    if (receivedSets.length === 1 && receivedSets[0]?.id) ids.add(String(receivedSets[0].id));
+    return ids;
+  }
+
   function updateHistoryControl() {
     const tool = document.getElementById('versionTool');
     if (!tool || !sheets.length) return;
     const button = tool.querySelector('.versionButton');
     const menu = tool.querySelector('.versionMenu');
-    const versions = historyForSheet(sheetNumber(currentSheet())).filter(item => item && item.setId !== (manifest.activeViewId || 'current'));
+    const currentIds = currentEquivalentSetIds();
+    const versions = historyForSheet(sheetNumber(currentSheet())).filter(item => item?.setId && !currentIds.has(String(item.setId)));
     button.hidden = versions.length === 0;
     menu.hidden = true;
     menu.innerHTML = versions.map(item => `<a href="${escHtml(historyUrl(item))}" target="_blank" rel="noopener"><strong>${escHtml(item.setName || item.label || item.setId || 'Previous version')}</strong><span>Received ${escHtml(displayDate(item.receivedDate))}${item.issueDate ? ` · Issue ${escHtml(displayDate(item.issueDate))}` : ''}</span></a>`).join('');
