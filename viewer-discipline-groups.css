@@ -3,6 +3,26 @@
 html.mobile-device .list{min-height:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;touch-action:pan-y;padding-right:max(10px,env(safe-area-inset-right))}
 html.mobile-device .sheet,html.mobile-device .result{min-width:0}
 html.mobile-device .sheetName,html.mobile-device .resultTitle{min-width:0;overflow:hidden;text-overflow:ellipsis}
+html.mobile-device .mobileDisciplineIntro{padding:13px 11px 9px;color:#344054}
+html.mobile-device .mobileDisciplineIntro strong,html.mobile-device .mobileDisciplineIntro span{display:block}
+html.mobile-device .mobileDisciplineIntro strong{font-size:13px}
+html.mobile-device .mobileDisciplineIntro span{margin-top:3px;color:#667085;font-size:10.5px}
+html.mobile-device .mobileDisciplineButton{width:100%;min-height:56px;margin:0 0 5px;padding:9px 10px 9px 12px;border:1px solid #dfe5ee;border-radius:10px;background:#fff;color:#172033;display:flex;align-items:center;justify-content:space-between;gap:10px;text-align:left;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+html.mobile-device .mobileDisciplineButton.current{border-color:#9dbbf5;background:#eef4ff;color:#174ea6}
+html.mobile-device .mobileDisciplineButton strong,html.mobile-device .mobileDisciplineButton small{display:block}
+html.mobile-device .mobileDisciplineButton strong{font-size:12px}
+html.mobile-device .mobileDisciplineButton small{margin-top:3px;color:#667085;font-size:10px;font-weight:650}
+html.mobile-device .mobileDisciplineArrow{font-size:26px;line-height:1;color:#98a2b3}
+html.mobile-device .mobileDisciplineHeader{position:sticky;top:0;z-index:8;min-height:54px;margin:0 -8px 8px;padding:7px 10px;display:flex;align-items:center;gap:9px;border-bottom:1px solid #d9e0ea;background:#172033;color:#fff;box-shadow:0 4px 12px rgba(15,23,42,.18)}
+html.mobile-device .mobileDisciplineHeader strong,html.mobile-device .mobileDisciplineHeader small{display:block}
+html.mobile-device .mobileDisciplineHeader strong{font-size:12.5px}
+html.mobile-device .mobileDisciplineHeader small{margin-top:2px;color:#c7d2e4;font-size:9.5px}
+html.mobile-device .mobileDisciplineBack{width:38px;height:38px;flex:0 0 auto;border:1px solid rgba(255,255,255,.2);border-radius:9px;background:rgba(255,255,255,.08);color:#fff;font-size:25px;line-height:1}
+html.mobile-device .mobileSubsection{position:sticky;top:54px;z-index:6;margin:8px 1px 4px;padding:7px 9px;border-left:3px solid var(--accent);background:#f2f5f9;color:#475467;font-size:9.5px;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
+html.mobile-device .sidebar.mobileDisciplineFocus{grid-template-rows:minmax(0,1fr);overflow:hidden}
+html.mobile-device .sidebar.mobileDisciplineFocus>.brand,html.mobile-device .sidebar.mobileDisciplineFocus>div:nth-child(2),html.mobile-device .sidebar.mobileDisciplineFocus>.sideFoot{display:none}
+html.mobile-device .sidebar.mobileDisciplineFocus>.list{grid-row:1;height:100%;min-height:0;padding:0 8px 18px}
+@media(orientation:portrait){html.mobile-device .sidebar.mobileDisciplineFocus{width:min(96vw,430px)}}
 @media(orientation:landscape){
   html.mobile-device .majorGroup{top:0}
   html.mobile-device .sidebar{grid-template-rows:auto auto minmax(0,1fr) auto;overflow:hidden;box-sizing:border-box}
@@ -10,4 +30,5 @@ html.mobile-device .sheetName,html.mobile-device .resultTitle{min-width:0;overfl
   html.mobile-device .setBox,html.mobile-device .search,html.mobile-device .viewBox{width:100%;min-width:0;box-sizing:border-box}
   html.mobile-device .projectSelect,html.mobile-device .viewSelect,html.mobile-device .search input{width:100%;max-width:100%;min-width:0}
   html.mobile-device .sideFoot{min-width:0;overflow:hidden}
+  html.mobile-device .sidebar.mobileDisciplineFocus{grid-template-rows:minmax(0,1fr)}
 }
