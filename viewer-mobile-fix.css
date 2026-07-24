@@ -22,4 +22,17 @@ html.mobile-device .floatNav{position:absolute;top:50%;z-index:14;width:48px;hei
 html.mobile-device .floatPrev{left:max(8px,env(safe-area-inset-left))}
 html.mobile-device .floatNext{right:max(8px,env(safe-area-inset-right))}
 html.mobile-device .loadingBox,html.mobile-device .errorBox{margin:12px}
-@media(orientation:landscape){html.mobile-device{--mobileTop:43px}html.mobile-device .mobileTop{height:var(--mobileTop);padding-top:0}html.mobile-device .mobileTop .mTitle span{display:none}html.mobile-device .mobileBottom{display:none}html.mobile-device .scroll{top:var(--mobileTop);bottom:0}html.mobile-device .floatNav{display:flex}html.mobile-device .hiddenBars .floatNav{display:flex}}
+@media(orientation:landscape){
+  html.mobile-device{--mobileTop:43px;--landscapeSide:min(34vw,320px)}
+  html.mobile-device .mobileTop{height:var(--mobileTop);padding-top:0}
+  html.mobile-device .mobileTop .mTitle span{display:none}
+  html.mobile-device .mobileBottom{display:none}
+  html.mobile-device .scroll{top:var(--mobileTop);bottom:0}
+  html.mobile-device .floatNav{display:flex}
+  html.mobile-device .hiddenBars .floatNav{display:flex}
+  html.mobile-device .app.landscapeSidebarVisible .sidebar{width:var(--landscapeSide);transform:translateX(0);box-shadow:none;border-right:1px solid var(--line)}
+  html.mobile-device .app.landscapeSidebarVisible .main{left:var(--landscapeSide)}
+  html.mobile-device .app.landscapeSidebarVisible .mobileTop{left:var(--landscapeSide)}
+  html.mobile-device .app.landscapeSidebarVisible .shade{display:none!important}
+  html.mobile-device .app.landscapeSidebarVisible .floatPrev{left:calc(var(--landscapeSide) + max(8px,env(safe-area-inset-left)))}
+}
